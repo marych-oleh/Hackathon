@@ -1,6 +1,10 @@
 package com.SobakaMaMaZoSteR.demo.logic.user;
 
 
+/**
+ * This class is responsible for user interactions
+ * and is used in auth.
+ */
 public class User {
     private String userId;
     private String userName;
