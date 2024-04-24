@@ -1,13 +1,10 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.scss';
-import { CartStore } from './stores/CartStore';
-import { ProductStore } from './stores/ProductStore';
 import { UserStore } from './stores/UserStore';
 import { addTouchClass } from './utils/functions';
-import { BrowserRouter } from 'react-router-dom';
-import { FavoriteStore } from './stores/FavoriteStore';
 
 export const Context = createContext(null);
 
@@ -19,10 +16,7 @@ root.render(
 	<React.StrictMode>
 		<Context.Provider
 			value={{
-				user: new UserStore(),
-				products: new ProductStore(),
-				cart: new CartStore(),
-				favorites: new FavoriteStore(),
+				userStore: new UserStore(),
 			}}
 		>
 			<BrowserRouter>
