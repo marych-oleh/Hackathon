@@ -54,9 +54,9 @@ body .selectList__content {
 		border 0.2s ease;
 	&:focus {
 		outline: none;
-		border-color: $goldColor;
+		border-color: $orangeColor;
 		&::placeholder {
-			color: $goldColor;
+			color: $orangeColor;
 		}
 	}
 }
@@ -72,8 +72,8 @@ body .selectList__content {
 		border 0.2s ease;
 	@media (any-hover: hover) {
 		&:hover {
-			color: $goldColor;
-			border-color: $goldColor;
+			color: $orangeColor;
+			border-color: $orangeColor;
 		}
 	}
 }
