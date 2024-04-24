@@ -1,12 +1,17 @@
 package com.SobakaMaMaZoSteR.demo.logic.user.civiluser;
 
+import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserDto;
+import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
+/**
+ *
+ */
 @RestController
 @RequestMapping("/civilUser")
 public class CivilUserController {
@@ -14,11 +19,42 @@ public class CivilUserController {
     @Autowired
     private CivilUserRepository civilUserRepository;
 
+    /**
+     * @return a List of all users presented in DB
+     */
+    @GetMapping("/getAll")
+    public ResponseEntity<List<CivilUser>> getAllCivilUsers() {
+        return ResponseEntity.ok(civilUserRepository.findAll());
+    }
+
+    /**
+     * @param id - search civilUser id
+     * @return user that's been found
+     */
     @GetMapping("/getById/{id}")
     public ResponseEntity<CivilUser> getCivilUserById(
             @PathVariable String id
     ) {
-        return civilUserRepository
+        Optional<CivilUser> civilUser = civilUserRepository.findById(id);
+        return ResponseEntity.ok(civilUser.get());
+    }
+    @PostMapping("/add")
+    public ResponseEntity<CivilUser> addCivilUser(
+            @RequestBody CivilUserDto userTemplate
+            ) {
+        CivilUser civilUser = CivilUserMapper.parseDtoToCivilUser(userTemplate);
+        return ResponseEntity.ok(civilUser);
     }
 
+    /**
+     * @param email --
+     * @return User with that email
+     */
+    @GetMapping("/getByEmail/{email}")
+    public ResponseEntity<CivilUser> getCivilUserByEmail(
+            @PathVariable String email
+    ) {
+        Optional<CivilUser> civilUser = civilUserRepository.findByEmail(email);
+        return ResponseEntity.ok(civilUser.get());
+    }
 }

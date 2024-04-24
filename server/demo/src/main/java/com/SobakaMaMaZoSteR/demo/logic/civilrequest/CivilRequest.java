@@ -1,7 +1,7 @@
 package com.SobakaMaMaZoSteR.demo.logic.civilrequest;
 
 
-import com.SobakaMaMaZoSteR.demo.logic.user.volunteer.VolunteerUser;
+import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.VolunteerUser;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

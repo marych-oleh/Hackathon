@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 @Repository
 public interface CivilUserRepository extends MongoRepository<CivilUser, String> {
+    // TODO: implement
 
-
-
+    Optional<CivilUser> findByEmail(String s);
 }
