@@ -17,19 +17,23 @@
 }
 
 // Constants
-@import url(https://fonts.googleapis.com/css?family=Poppins:300,regular,500,600,700&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,regular,500,600,700&display=swap);
 // За замовчуванням шрифт ==============================================================================================================================================================================================================================================================================
-$fontFamily: 'Poppins';
+$fontFamily: 'Montserrat';
 $fontSize: 1rem;
 
 // Основні кольори
 $mainColor: #000;
-$sandColor: #fbebb5;
-$lightSandColor: #fff9e5;
-$greyColor: #9f9f9f;
-$lightGreyColor: #b0b0b0;
-$darkGreyColor: #3a3a3a;
-$goldColor: #b88e2f;
+$orangeColor: #f55721;
+$greyColor: #a3a3a3;
+$greyBorderColor: #d5d5d5;
+$lightGreyColor: #f2f4f5;
+$blueColor: #615aff;
+$radialBlack: radial-gradient(
+	70.71% 70.71% at 50% 50%,
+	rgb(0, 0, 0) 0%,
+	rgb(0, 0, 0) 100%
+);
 
 // Мінімальна ширина сторінки
 $minWidth: 320;
