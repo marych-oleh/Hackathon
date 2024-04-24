@@ -1,0 +1,78 @@
+@import "../../../utils/common.scss";
+.selectList__body {
+	transition: height 0.5s ease;
+	overflow: hidden;
+}
+
+.selectList__title {
+	cursor: pointer;
+	font-weight: 500;
+	color: $greyColor;
+	padding: 0.5em 1em;
+	border-bottom: 1px solid $mainColor;
+	position: relative;
+	transition: color .5s ease;
+	&::after {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 1em;
+		height: 1em;
+		bottom: 0.7em;
+		right: 1em;
+		border-bottom: .2em solid $greyColor;
+		border-left: .2em solid $greyColor;
+		transform: rotate(-45deg);
+		transition: transform 0.5s ease, bottom .5s ease, border-color .5s ease;
+	}
+	&._active {
+		color: $goldColor;
+	}
+	&._active::after {
+		transform: rotate(135deg);
+		bottom: 0.2em;
+		border-color: $goldColor;
+	}
+}
+
+.selectList__link {
+	font-weight: 500;
+	transition: color 0.2s ease;
+	@media (any-hover: hover){
+		&:hover{
+			color: $goldColor;
+		}
+	}
+}
+.selectList__element {
+	margin-top: em(20);
+	width: max-content;
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
+.selectList.big {
+	.selectList__title {
+		border: none;
+		cursor: initial;
+		padding: 0;
+	}
+	.selectList__body {
+		border: none;
+	}
+	.selectList__content {
+		padding: 0;
+		border: none;
+		padding-top: em(55);
+	}
+	.selectList__title::after {
+		display: none;
+	}
+	.selectList__element {
+		margin-top: em(46);
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+}
