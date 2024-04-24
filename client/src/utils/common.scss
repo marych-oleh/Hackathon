@@ -42,6 +42,8 @@ $maxWidth: 1440;
 // Ширина обмежуючого контейнера
 $maxWidthContainer: 1240;
 $mobileWidth: 767.98;
+$tabletWidth: 991.98;
+$mobileSmallWidth: 479.98;
 // Загальний відступ у контейнера
 $containerPadding: 30;
 $halfContainerPadding: 15;
@@ -53,9 +55,11 @@ $containerWidth: $maxWidthContainer + $containerPadding;
 $pc: em(
 	$containerWidth
 ); // ПК, ноутбуки, деякі планшети у горизонтальному положенні
-$tablet: em(991.98); // Планшети, деякі телефони в горизонтальному положенні
-$mobile: em(767.98); // Телефони L
-$mobileSmall: em(479.98); // Телефони S
+$tablet: em(
+	$tabletWidth
+); // Планшети, деякі телефони в горизонтальному положенні
+$mobile: em($mobileWidth); // Телефони L
+$mobileSmall: em($mobileSmallWidth); // Телефони S
 
 // extend classes
 %linkHover {
