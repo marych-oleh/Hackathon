@@ -5,6 +5,7 @@ import com.SobakaMaMaZoSteR.demo.logic.user.User;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,4 +19,8 @@ import java.util.List;
 public class CivilUser extends User {
     private List<CivilRequest> createdCivilRequest;
 
+    public CivilUser(User other) {
+        super(other);
+        this.createdCivilRequest = new ArrayList<>();
+    }
 }

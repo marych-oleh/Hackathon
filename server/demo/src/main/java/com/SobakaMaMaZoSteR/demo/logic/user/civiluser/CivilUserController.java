@@ -4,6 +4,7 @@ import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserDto;
 import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/civilUser")
+@PreAuthorize("hasAnyRole('ROLE_USER_CIVIl')")
 public class CivilUserController {
 
     @Autowired
@@ -37,13 +39,6 @@ public class CivilUserController {
     ) {
         Optional<CivilUser> civilUser = civilUserRepository.findById(id);
         return ResponseEntity.ok(civilUser.get());
-    }
-    @PostMapping("/add")
-    public ResponseEntity<CivilUser> addCivilUser(
-            @RequestBody CivilUserDto userTemplate
-            ) {
-        CivilUser civilUser = CivilUserMapper.parseDtoToCivilUser(userTemplate);
-        return ResponseEntity.ok(civilUser);
     }
 
     /**
