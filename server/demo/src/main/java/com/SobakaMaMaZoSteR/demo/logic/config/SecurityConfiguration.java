@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,10 +28,11 @@ public class SecurityConfiguration {
                     //.requestMatchers("/api/v1/user/**").hasAnyRole("USER")
 
                     .requestMatchers("/home/**").permitAll()
-                    .requestMatchers("/userRouter/**").permitAll()
-                .requestMatchers("/volunteerUser/**").hasAnyRole("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
-                .requestMatchers("/civilUser/**").hasAnyRole("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")
                     .requestMatchers("/api/v1/auth/**").permitAll()
+                    .requestMatchers("/userRouter/**").permitAll()
+                    .requestMatchers("/volunteerUser/**").hasAnyAuthority("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
+                    .requestMatchers("/civilUser/**").hasAnyAuthority("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")
+
 
                     //.requestMatchers("/api/v1/user/**").permitAll()
                 .anyRequest().authenticated()
