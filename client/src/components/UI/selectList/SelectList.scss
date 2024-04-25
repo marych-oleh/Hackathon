@@ -26,12 +26,12 @@
 		transition: transform 0.5s ease, bottom .5s ease, border-color .5s ease;
 	}
 	&._active {
-		color: $goldColor;
+		color: $orangeColor;
 	}
 	&._active::after {
 		transform: rotate(135deg);
 		bottom: 0.2em;
-		border-color: $goldColor;
+		border-color: $orangeColor;
 	}
 }
 
@@ -40,7 +40,7 @@
 	transition: color 0.2s ease;
 	@media (any-hover: hover){
 		&:hover{
-			color: $goldColor;
+			color: $orangeColor;
 		}
 	}
 }
