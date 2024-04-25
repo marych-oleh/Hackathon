@@ -9,6 +9,7 @@ import com.SobakaMaMaZoSteR.demo.logic.user.user_router.UserRouter;
 import com.SobakaMaMaZoSteR.demo.logic.user.user_router.UserRouterRepository;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.VolunteerUser;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.VolunteerUserRepository;
+import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +36,25 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     /**
+     * If inserted in code will throw an IllegalAccessException
+     * if user specified in the request is already defined and will allow the auth.process
+     * ro continue otherwise;
+     *
+     * @param request - HttpRegister request gotten from the FrontApi
+     * @throws IllegalAccessException - when user specified in request doesn't exist
+     */
+    private void checkIfUserExists(RegisterRequest request) throws IllegalAccessException {
+        if (Role.USER_CIVIL == request.getUserRole()
+                && civilUserRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalAccessException("Such User already exists in\n\t>> CivilSchema!");
+        }
+        if (Role.USER_VOLUNTEER == request.getUserRole()
+                && volunteerUserRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalAccessException("Such User already exists in\n\t>> VolunteerSchema!");
+        }
+    }
+
+    /**
      * This method registers and saves our different users in DBs
      * --
      * The information needed is common and relates to the parent User class,
@@ -43,8 +63,13 @@ public class AuthenticationService {
      * --
      * @param request - request coming form the API
      * @return - AuthenticationResponse
+     * @throws IllegalAccessException - if such user already exists
      */
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws IllegalAccessException {
+        // first - check if it already exists
+        this.checkIfUserExists(request);
+
+        // build a parent class which will be used to create a token
         User userTemplate = User.builder()
                 .userName(request.getUserName())
                 .password(passwordEncoder.encode(request.getPassword())) // hashing
@@ -53,8 +78,6 @@ public class AuthenticationService {
                 .passport(request.getPassport())
                 .userRole(request.getUserRole())
                 .build();
-        System.out.println("\n\n> USER TEMPLATE: " + userTemplate);
-
         /*
          * Depending on the userRole we'll save that user in a different rep.
          */
@@ -73,7 +96,6 @@ public class AuthenticationService {
                     new UserRouter(newUser.getUserId(), newUser.getEmail(), newUser.getUserRole())
             );
         }
-        System.out.println("after - " + userRouterRepository.findByUserEmail(userTemplate.getEmail()));
         var jwtToken = jwtService.generateToken(userTemplate);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -115,7 +137,6 @@ public class AuthenticationService {
             user = volunteerUserRepository.findByEmail(request.getEmail())
                     .orElseThrow();
         }
-        System.out.println("after - " + userRouterRepository.findByUserEmail(user.getEmail()));
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

@@ -18,10 +18,18 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private final AuthenticationService service;
 
+    /**
+     * Register users and adds it to DB;
+     * If User with such email already exists - throws an Exception
+     *
+     * @param request - a user to register
+     * @return Response entity of user if no exceptions was thrown
+     * @throws IllegalAccessException if proposed user already exists in a DataBase
+     */
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
-    ) {
+    ) throws IllegalAccessException {
         return ResponseEntity.ok(service.register(request));
     }
 

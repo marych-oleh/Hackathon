@@ -37,19 +37,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        System.out.println("\n\nNo ERRORS TIL HERE\n\n");
 
         // 7 because "Bearer " has 7 symbols
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
 
-        System.out.println("> userEmail " + userEmail);
-
         // if user is not authenticated
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-
-            System.out.println("\n\nTHE USER IS NOT AUTHENTICATED\n\n");
 
             // if gotten user is valid -> build a token and update a token holder
             if (jwtService.isTokenValid(jwt, userDetails)) {
@@ -65,9 +60,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
-
-        System.out.println("\n\nSTARTED \n\n");
         filterChain.doFilter(request, response);
-        System.out.println("\n\nFINISHED \n\n");
     }
 }
