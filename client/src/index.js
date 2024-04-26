@@ -13,7 +13,7 @@ addTouchClass();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
+	// <React.StrictMode>
 		<Context.Provider
 			value={{
 				userStore: new UserStore(),
@@ -23,5 +23,5 @@ root.render(
 				<App />
 			</BrowserRouter>
 		</Context.Provider>
-	</React.StrictMode>
+	// </React.StrictMode>
 );

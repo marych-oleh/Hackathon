@@ -1,1 +1,73 @@
 @import '../../utils/common.scss';
+
+.login {
+	display: flex;
+	justify-content: center;
+	margin-top: toRem(30);
+	@include adaptiveValue('margin-bottom', 120, 30);
+	> form {
+		width: 100%;
+		max-width: toRem(700);
+		display: flex;
+		flex-direction: column;
+		gap: toRem(18);
+		@media (min-width: $tablet) {
+			gap: toRem(36);
+		}
+	}
+
+	// .login__form-title
+	&__form-title {
+		text-align: center;
+		font-weight: 600;
+		font-size: toRem(24);
+		@media (min-width: $mobileSmall) {
+			font-size: toRem(28);
+		}
+		@media (min-width: $tablet) {
+			font-size: toRem(36);
+		}
+	}
+
+	// .login__field
+	&__field {
+	}
+
+	// .login__footer
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: toRem(15);
+		flex-wrap: wrap;
+	}
+
+	&__button {
+		width: 100%;
+		@media (min-width: $mobileSmall) {
+			max-width: toRem(200);
+		}
+		@media (min-width: $tablet) {
+			height: toRem(64);
+		}
+	}
+	// .login__footer-text
+	&__footer-text {
+		font-size: toRem(14);
+		display: flex;
+		align-items: center;
+		gap: toRem(5);
+		flex-wrap: wrap;
+		@media (min-width: $mobile) {
+			font-size: toRem(18);
+		}
+	}
+
+	// .login__footer-link
+	&__footer-link {
+		display: inline-block;
+		font-weight: 600;
+		color: $blueColor;
+		@extend %linkHover;
+	}
+}
