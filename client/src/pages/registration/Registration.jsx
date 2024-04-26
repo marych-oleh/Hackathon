@@ -1,13 +1,10 @@
 import { observer } from 'mobx-react';
 import React, { useContext, useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
-import {
-	ACCOUNT_ROUTE,
-	LOGIN_ROUTE,
-} from '../../utils/paths';
+import { ACCOUNT_ROUTE, LOGIN_ROUTE } from '../../utils/paths';
 import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
 import './Registration.scss';
@@ -18,9 +15,10 @@ const VOLUNTEER = 'USER_VOLUNTEER';
 const CIVIL = 'USER_CIVIL';
 
 const Registration = observer(() => {
-	const { user } = useContext(Context);
+	const { userStore } = useContext(Context);
+	const navigation = useNavigate();
 
-	const [isVolunteer, setIsVolunteer] = useState(false);
+	const [isVolunteer, setIsVolunteer] = useState(true);
 	const [registrationForm, setRegistrationForm] = useState({
 		userName: '',
 		email: '',
@@ -32,17 +30,15 @@ const Registration = observer(() => {
 
 	async function signUp(e) {
 		e.preventDefault();
-		console.log(registrationForm);
-		//user.setIsAuth(true);
 
-		redirect(ACCOUNT_ROUTE);
-		// try {
-		// 	e.preventDefault();
-		// 	const data = await UserAPI.registration(userName, email, password);
-		// 	user.setIsAuth(true);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			e.preventDefault();
+			const data = await UserAPI.registration(registrationForm);
+			userStore.setIsAuth(true);
+			navigation(ACCOUNT_ROUTE);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	const onChangeInput = (e) => {

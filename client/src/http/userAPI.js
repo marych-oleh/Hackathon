@@ -3,12 +3,9 @@ import { jwtDecode } from 'jwt-decode';
 
 export class UserAPI {
 	static TOKEN_NAME = 'helpinua-token';
-
-	static async registration(userName, email, password) {
+	static async registration(registerRequest) {
 		const response = await $host.post('auth/register', {
-			email,
-			userName,
-			password,
+			...registerRequest,
 		});
 		const data = response.data;
 		const token = data.token;
