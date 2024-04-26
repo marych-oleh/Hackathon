@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../../components/container/Container';
 import './Account.scss';
 
+
 const Account = () => {
 	return (
 		<main>
