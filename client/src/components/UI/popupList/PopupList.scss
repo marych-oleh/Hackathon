@@ -1,0 +1,23 @@
+@import "../../../utils/common.scss";
+
+.popup-list {
+	&__body-container {
+		overflow: hidden;
+		transition: height .3s ease;
+	}
+	&__title {
+		display: flex;
+		align-items: center;
+	}
+	&__arrow {
+		margin: 0 em(15);
+		border-top: .7em solid black;
+		border-left: .4em solid transparent;
+		border-right: .4em solid transparent;
+		transform: rotate(0);
+		transition: transform .3s ease;
+		&.active {
+			transform: rotate(180deg);
+		}
+	}
+}

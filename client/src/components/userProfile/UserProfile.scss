@@ -1,0 +1,36 @@
+@import '../../utils/common.scss';
+
+.user-profile {
+	display: flex;
+	justify-content: space-between;
+	gap: em(20);
+	flex-direction: column;
+	&__name {
+		font-size: em(34);
+		font-weight: 500;
+	}
+	&__contacts {
+		font-size: em(20);
+	}
+	&__email {
+		@extend %linkHover;
+	}
+	&__phone-number {
+		margin-top: em(5);
+	}
+	@media (min-width: $mobile) {
+		&__name {
+			font-size: em(42);
+		}
+		&__contacts {
+			font-size: em(24);
+		}
+		&__phone-number {
+			margin-top: em(10);
+		}
+	}
+	@media (min-width: $mobileSmall) {
+		flex-direction: row;
+		align-items: flex-end;
+	}
+}

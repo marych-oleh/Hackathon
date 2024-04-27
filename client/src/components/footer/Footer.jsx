@@ -30,11 +30,11 @@ const Footer = () => {
 					</Link>
 					{userStore.isAuth && (
 						<Link to={userAccount} className="footer__link">
-							Account
+							Акаунт
 						</Link>
 					)}
 					<a className="footer__link" href="#">
-						Contact
+						Про нас
 					</a>
 				</div>
 			</Container>
