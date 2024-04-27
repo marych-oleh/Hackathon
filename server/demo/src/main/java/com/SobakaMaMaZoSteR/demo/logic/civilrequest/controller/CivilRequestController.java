@@ -31,8 +31,12 @@ public class CivilRequestController {
     @PostMapping("/add")
     public ResponseEntity<CivilRequestDto> add(@RequestBody CivilRequestDto civilRequestDto) {
         CivilRequest civilRequest = civilRequestMapper.toCivilRequest(civilRequestDto);
-        return new ResponseEntity<>(civilRequestMapper.toCivilRequestDto(civilRequestService.addRequest(civilRequest)), HttpStatus.OK);
-    }
+        CivilRequest civilRequestReceived = civilRequestService.addRequest(civilRequest);
+
+        if (civilRequestReceived == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(civilRequestMapper.toCivilRequestDto(civilRequestReceived), HttpStatus.OK);}
 
     @GetMapping("/get/{productId}")
     public ResponseEntity<CivilRequest> getById(@PathVariable String productId) {
@@ -49,10 +53,10 @@ public class CivilRequestController {
     }
 
 
-    @GetMapping("/getCivilRequests/{civilUseId}")
+    @GetMapping("/getCivilRequests/{civilUserId}")
     private ResponseEntity<List<CivilRequestWithVolunteer>> findAllCivilRequestByCivilUser(
-            @PathVariable String civilUseId){
-        return new ResponseEntity<>(civilRequestService.findAllCivilRequestByCivilUser(civilUseId), HttpStatus.OK);
+            @PathVariable String civilUserId){
+        return new ResponseEntity<>(civilRequestService.findAllCivilRequestByCivilUser(civilUserId), HttpStatus.OK);
     }
 
     // Oleh asked to make publicly visible - 2
@@ -71,8 +75,8 @@ public class CivilRequestController {
         return new ResponseEntity<>(civilRequestMapper.toCivilRequestDto(civilRequestService.addInfoVolunteer(civilRequestId, infoVolunteer)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{productId}")
-    public ResponseEntity<CivilRequest> delete(@PathVariable String productId) {
-        return new ResponseEntity<>(civilRequestService.deleteById(productId), HttpStatus.OK);
+    @DeleteMapping("/delete/{civilUserId}")
+    public ResponseEntity<CivilRequest> delete(@PathVariable String civilUserId) {
+        return new ResponseEntity<>(civilRequestService.deleteById(civilUserId), HttpStatus.OK);
     }
 }

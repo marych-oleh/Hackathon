@@ -39,6 +39,16 @@ public class CivilRequestService {
     @Autowired
     private LocationAndNumberMapper locationAndNumberMapper;
     public CivilRequest addRequest(CivilRequest civilRequest) {
+
+        List<CivilRequest> civilRequestsList = civilRequestRepository.findAllByCivilUserId(civilRequest.getCivilUserId());
+
+        for (CivilRequest c: civilRequestsList){
+            List<String> tagsInDb = c.getTags();
+            if(isTagInTags(tagsInDb,civilRequest.getTags())){
+                return null;
+            }
+        }
+
         CivilRequest civil = civilRequestRepository.save(civilRequest);
 
         Optional<CivilUser> civilUser = civilUserRepository.findById(civil.getCivilUserId());
@@ -48,6 +58,17 @@ public class CivilRequestService {
         civilUserRepository.save(civilUser.get());
 
         return civil;
+    }
+
+    private boolean isTagInTags(List<String> tagsInBd, List<String> receivedTags){
+
+        for (String tagInBd: tagsInBd){
+            for (String tagReceived: receivedTags){
+                if(tagInBd.equals(tagReceived))
+                    return true;
+            }
+        }
+        return false;
     }
 
     public CivilRequest findById(String civilRequestId) {
