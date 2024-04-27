@@ -5,9 +5,11 @@ import {
 	Login,
 	MainMap,
 	Registration,
+	CivilRequestsPage,
 } from '../pages/pages.js';
 import {
 	CIVIL_ACCOUNT_ROUTE,
+	CIVIL_REQUESTS_ROUTE,
 	VOLUNTEER_ACCOUNT_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
@@ -38,6 +40,10 @@ export const publicRoutes = [
 	{
 		path: MAP_ROUTE,
 		Component: MainMap,
+	},
+	{
+		path: CIVIL_REQUESTS_ROUTE,
+		Component: CivilRequestsPage,
 	},
 	{
 		path: LOGIN_ROUTE,
