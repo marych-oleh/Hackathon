@@ -1,5 +1,6 @@
 package com.SobakaMaMaZoSteR.demo.logic.config;
 
+import com.SobakaMaMaZoSteR.demo.logic.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -32,11 +33,11 @@ public class JwtService {
      * @param userDetails -
      * @return - returns token
      */
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User userDetails) {
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("roles", userDetails.getAuthorities().stream().findFirst()
-                .orElseThrow(() -> new RuntimeException("Oleh, just leave me at peace🙂"))
-        );
+
+        // commented, cause Oleh said to pass the ROLE via response and no in the token itself
+        //extraClaims.put("roles", userDetails.getUserRole());
         return generateToken(extraClaims, userDetails);
     }
 

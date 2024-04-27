@@ -39,6 +39,7 @@ public class CivilRequestController {
         return new ResponseEntity<>(civilRequestService.findById(productId), HttpStatus.OK);
     }
 
+    // Oleh asked to make publicly visible - 1
     @GetMapping("/getAllBy")
     public ResponseEntity<List<LocationAndNumberDto>> getAll(
             @RequestParam(name = "tag", defaultValue = "null", required = false) List<String> tags) {
@@ -46,12 +47,15 @@ public class CivilRequestController {
         List<LocationAndNumberDto> listRequests = civilRequestService.getAll(tags);
         return new ResponseEntity<>(listRequests, HttpStatus.OK);
     }
-    @GetMapping("/getCivilRequests/{civilUseId}")
-    private ResponseEntity<List<CivilRequestWithVolunteer>> findAllCivilRequestByCivilUser(@PathVariable String civilUseId){
 
+
+    @GetMapping("/getCivilRequests/{civilUseId}")
+    private ResponseEntity<List<CivilRequestWithVolunteer>> findAllCivilRequestByCivilUser(
+            @PathVariable String civilUseId){
         return new ResponseEntity<>(civilRequestService.findAllCivilRequestByCivilUser(civilUseId), HttpStatus.OK);
     }
 
+    // Oleh asked to make publicly visible - 2
     @GetMapping("/getAllRequests/{locationName}")
     public ResponseEntity<List<CivilRequestDto>> getAllRequests(@PathVariable String locationName) {
         List<CivilRequest> list = civilRequestService.getAllFullRequests(locationName);
