@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { useContext, useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
@@ -11,24 +11,22 @@ import Input from '../../components/UI/input/Input';
 import PasswordInput from '../../components/UI/passwordInput/PasswordInput';
 
 const Login = observer(() => {
-	const { user } = useContext(Context);
+	const { userStore } = useContext(Context);
+	const navigation = useNavigate();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	async function signIn(e) {
 		e.preventDefault();
-		console.log('Sigh In');
-		user.setIsAuth(true);
 
-		redirect(ACCOUNT_ROUTE);
-		// try {
-		// 	const data = await UserAPI.login(email, password);
-		// 	console.log(data);
-		// 	user.setIsAuth(true);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			const data = await UserAPI.login(email, password);
+			navigation(ACCOUNT_ROUTE);
+			userStore.setIsAuth(true);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
@@ -64,7 +62,12 @@ const Login = observer(() => {
 						</Button>
 						<div className="login__footer-text">
 							Немає акаунту ?
-							<Link className='login__footer-link' to={REGISTRATION_ROUTE}>Зареєструйтесь !</Link>
+							<Link
+								className="login__footer-link"
+								to={REGISTRATION_ROUTE}
+							>
+								Зареєструйтесь !
+							</Link>
 						</div>
 					</section>
 				</form>
