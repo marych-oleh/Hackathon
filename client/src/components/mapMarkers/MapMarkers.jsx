@@ -92,7 +92,9 @@ const MapMarkers = ({ points, onMarkerClick }) => {
 						}
 						setMarkerRef(marker, point.location.locationName);
 					}}
-					onClick={() => onMarkerClick(point)}
+					onClick={() => {
+						if (onMarkerClick) onMarkerClick(point);
+					}}
 					amountOfRequestsInLocation={point.amountOfRequestsInLocation}
 				>
 					<MapMarker

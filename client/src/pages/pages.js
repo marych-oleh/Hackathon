@@ -4,3 +4,4 @@ export { default as Registration } from './registration/Registration.jsx';
 export { default as Login } from './login/Login.jsx';
 export { default as Home } from './home/Home.jsx';
 export { default as MainMap } from './mainMap/MainMap.jsx';
+export { default as CivilRequestsPage } from './civilRequestsPage/CivilRequestsPage.jsx';

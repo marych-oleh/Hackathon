@@ -2,6 +2,7 @@ import { InfoWindow } from '@vis.gl/react-google-maps';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import './MapInfoWindow.scss';
+import { CIVIL_REQUESTS_ROUTE } from '../../../utils/paths';
 
 /**
  * @param {Object} Props
@@ -22,7 +23,14 @@ const MapInfoWindow = ({ point, closeInfoWindow }) => {
 					{point.amountOfRequestsInLocation} запитів
 				</div>
 				<div className="info-window__link">
-					<Link>Допомогти</Link>
+					<Link
+						to={
+							CIVIL_REQUESTS_ROUTE +
+							`?locationName=${point.location.locationName}`
+						}
+					>
+						Допомогти
+					</Link>
 				</div>
 			</div>
 		</InfoWindow>

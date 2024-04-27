@@ -1,15 +1,13 @@
-import {
-	APIProvider,
-	Map
-} from '@vis.gl/react-google-maps';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import React from 'react';
 import { points } from '../../utils/testData';
 import MapMarkers from '../mapMarkers/MapMarkers';
 
-const HelpMap = () => {
+const HelpMap = (props) => {
 	return (
 		<APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
 			<Map
+				{...props}
 				defaultCenter={{ lat: 48.497, lng: 31.182 }}
 				defaultZoom={5}
 				gestureHandling={'greedy'}
