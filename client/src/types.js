@@ -50,3 +50,6 @@
  * @property {string} description
  * @property {InfoVolunteerResponse[]} infoVolunteers
  */
+
+export const VOLUNTEER = 'USER_VOLUNTEER';
+export const CIVIL = 'USER_CIVIL';

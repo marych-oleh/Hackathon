@@ -7,15 +7,18 @@
 	top: 0;
 	left: 0;
 
-	&::before {
-		content: '';
-		z-index: -1;
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background-color: #fff;
+	// .header:not(.map-page)
+	&:not(.map-page) {
+		&::before {
+			content: '';
+			z-index: -1;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: #fff;
+		}
 	}
 
 	// .header__container
@@ -27,16 +30,14 @@
 		transition: min-height 0.3s;
 		@media (min-width: $mobile) {
 			min-height: toRem(80);
-			._header-scroll & {
-				min-height: toRem(60);
-			}
 		}
 		@media (min-width: $tablet) {
 			min-height: toRem(100);
-
-			._header-scroll & {
-				min-height: toRem(80);
-			}
+		}
+		.map-page & {
+			min-height: 0;
+			margin: 0;
+			max-width: 100%;
 		}
 	}
 	// .header__menu
@@ -96,6 +97,35 @@
 				}
 			}
 		}
+		.map-page & {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 100%;
+			overflow: auto;
+			background-color: #f9f1e7;
+			transition: left 0.3s;
+			padding: toRem(80) toRem(15) toRem(25) toRem(15);
+
+			&::before {
+				content: '';
+				position: fixed;
+				width: 100%;
+				height: toRem(62);
+				top: 0;
+				left: 100%;
+				background-color: #fff3e3;
+				transition: left 0.3s;
+			}
+
+			.menu-open & {
+				left: 0;
+				&::before {
+					left: 0;
+				}
+			}
+		}
 	}
 	// .menu__list
 	&__list {
@@ -109,10 +139,26 @@
 			width: 100%;
 			text-align: right;
 		}
+		.map-page & {
+			display: block;
+			width: 100%;
+			text-align: right;
+		}
+		.header:not(.map-page) & {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: toRem(15) toRem(36);
+		}
 	}
 	// .menu__item
 	&__item {
 		@media (max-width: $mobile) {
+			&:not(:last-child) {
+				margin-bottom: em(40, 38);
+			}
+		}
+		.map-page & {
 			&:not(:last-child) {
 				margin-bottom: em(40, 38);
 			}
@@ -127,8 +173,12 @@
 			color: $orangeColor;
 			pointer-events: none;
 		}
-
 		@media (max-width: $mobile) {
+			width: 100%;
+			display: block;
+			font-size: toRem(38);
+		}
+		.map-page & {
 			width: 100%;
 			display: block;
 			font-size: toRem(38);
@@ -151,6 +201,10 @@
 	&__item {
 		opacity: 1;
 		transition: opacity 0.3s;
+
+		.map-page &:has(.map-btn) {
+			display: none;
+		}
 
 		.menu-open & {
 			opacity: 0;
@@ -229,6 +283,53 @@
 //Burger
 .icon-menu {
 	display: none;
+	.map-page & {
+		display: block;
+		position: relative;
+		width: toRem(30);
+		height: toRem(18);
+		z-index: 5;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span,
+		&::before,
+		&::after {
+			content: '';
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: toRem(2);
+			background-color: #000;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - toRem(1));
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before,
+			&::after {
+			}
+			&::before {
+				top: calc(50% - toRem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - toRem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+
 	@media (max-width: $mobile) {
 		display: block;
 		position: relative;

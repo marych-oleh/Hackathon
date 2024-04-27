@@ -1,18 +1,20 @@
 import { observer } from 'mobx-react';
 import React, { useContext, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
-import { CIVIL_ACCOUNT_ROUTE, VOLUNTEER_ACCOUNT_ROUTE, LOGIN_ROUTE } from '../../utils/paths';
+import {
+	CIVIL_ACCOUNT_ROUTE,
+	VOLUNTEER_ACCOUNT_ROUTE,
+	LOGIN_ROUTE,
+} from '../../utils/paths';
 import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
 import './Registration.scss';
 import PasswordInput from '../../components/UI/passwordInput/PasswordInput';
 import Checkbox from '../../components/UI/checkbox/Checkbox';
-
-const VOLUNTEER = 'USER_VOLUNTEER';
-const CIVIL = 'USER_CIVIL';
+import { CIVIL, VOLUNTEER } from '../../types';
 
 const Registration = observer(() => {
 	const { userStore } = useContext(Context);
@@ -35,8 +37,9 @@ const Registration = observer(() => {
 			e.preventDefault();
 			const data = await UserAPI.registration(registrationForm);
 			userStore.setIsAuth(true);
-			userStore.userData.role === 'civil' && navigation(CIVIL_ACCOUNT_ROUTE);
-			userStore.userData.role === 'volunteer' && navigation(VOLUNTEER_ACCOUNT_ROUTE);
+			userStore.userData.role === CIVIL && navigation(CIVIL_ACCOUNT_ROUTE);
+			userStore.userData.role === VOLUNTEER &&
+				navigation(VOLUNTEER_ACCOUNT_ROUTE);
 		} catch (error) {
 			console.log(error);
 		}
@@ -95,7 +98,7 @@ const Registration = observer(() => {
 							name="phoneNumber"
 							label="Номер телефону"
 							onChange={(e) => onChangeInput(e)}
-							autoComplete="phonenumber"
+							autoComplete="tel"
 							type="tel"
 							required
 						/>

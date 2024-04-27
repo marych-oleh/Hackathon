@@ -1,4 +1,4 @@
-import React, {useMemo, useContext } from 'react';
+import React, { useMemo, useContext } from 'react';
 import Container from '../container/Container.jsx';
 import './Footer.scss';
 import { Context } from '../../index.js';
@@ -6,12 +6,16 @@ import {
 	HOME_ROUTE,
 	CIVIL_ACCOUNT_ROUTE,
 	VOLUNTEER_ACCOUNT_ROUTE,
+	MAP_ROUTE,
 } from '../../utils/paths.js';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../UI/logo/Logo.jsx';
 
 const Footer = () => {
 	const { userStore } = useContext(Context);
+	const location = useLocation();
+
+	const isMapPage = location.pathname === MAP_ROUTE;
 
 	const userAccount = useMemo(() => {
 		switch (userStore.userData.role) {
@@ -21,6 +25,11 @@ const Footer = () => {
 				return VOLUNTEER_ACCOUNT_ROUTE;
 		}
 	}, [userStore.userData.role]);
+
+	if (isMapPage) {
+		return null;
+	}
+
 	return (
 		<footer className="footer">
 			<Container className="footer__container">

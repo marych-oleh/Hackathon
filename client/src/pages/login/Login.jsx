@@ -1,14 +1,19 @@
 import { observer } from 'mobx-react';
 import React, { useContext, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
-import { CIVIL_ACCOUNT_ROUTE, VOLUNTEER_ACCOUNT_ROUTE, REGISTRATION_ROUTE } from '../../utils/paths';
+import {
+	CIVIL_ACCOUNT_ROUTE,
+	VOLUNTEER_ACCOUNT_ROUTE,
+	REGISTRATION_ROUTE,
+} from '../../utils/paths';
 import './Login.scss';
 import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
 import PasswordInput from '../../components/UI/passwordInput/PasswordInput';
+import { CIVIL, VOLUNTEER } from '../../types';
 
 const Login = observer(() => {
 	const { userStore } = useContext(Context);
@@ -22,8 +27,9 @@ const Login = observer(() => {
 
 		try {
 			const data = await UserAPI.login(email, password);
-			userStore.userData.role === 'civil' && navigation(CIVIL_ACCOUNT_ROUTE);
-			userStore.userData.role === 'volunteer' && navigation(VOLUNTEER_ACCOUNT_ROUTE);
+			userStore.userData.role === CIVIL && navigation(CIVIL_ACCOUNT_ROUTE);
+			userStore.userData.role === VOLUNTEER &&
+				navigation(VOLUNTEER_ACCOUNT_ROUTE);
 			userStore.setIsAuth(true);
 		} catch (error) {
 			console.log(error);
