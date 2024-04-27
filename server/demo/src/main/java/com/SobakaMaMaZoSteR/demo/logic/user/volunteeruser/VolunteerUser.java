@@ -1,8 +1,7 @@
 package com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser;
 
-import com.SobakaMaMaZoSteR.demo.logic.civilrequest.CivilRequest;
+import com.SobakaMaMaZoSteR.demo.logic.civilrequest.entity.CivilRequest;
 import com.SobakaMaMaZoSteR.demo.logic.user.User;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
