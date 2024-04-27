@@ -15,7 +15,6 @@
  * @property {string[]} tags
  * @property {number} civilUserId
  * @property {Location} location
- * @property {"NOT_TAKEN"|"TAKEN"} status
  * @property {string} description
  */
 

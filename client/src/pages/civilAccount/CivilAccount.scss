@@ -1,0 +1,30 @@
+@import '../../utils/common.scss';
+
+.civil-user {
+	&__profile {
+		margin-top: em(15);
+	}
+	&__loader {
+		font-size: 4rem;
+		margin-left: 50%;
+		transform: translateX(-50%);
+	}
+	&__create-request-button {
+		margin-top: em(20);  
+		@media (max-width: $mobileSmall) {
+			width: 100%;
+		}
+		@media (min-width: $mobile) {
+			font-size: em(20);
+			margin-top: em(40);  
+		}
+	}
+	&__requests {
+		margin: em(20) 0;
+	}
+	
+	&__no-requests {
+		font-weight: 500;
+		margin-left: em(15);
+	}
+}
