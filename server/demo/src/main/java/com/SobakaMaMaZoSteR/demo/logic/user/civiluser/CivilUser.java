@@ -1,6 +1,6 @@
 package com.SobakaMaMaZoSteR.demo.logic.user.civiluser;
 
-import com.SobakaMaMaZoSteR.demo.logic.civilrequest.CivilRequest;
+import com.SobakaMaMaZoSteR.demo.logic.civilrequest.entity.CivilRequest;
 import com.SobakaMaMaZoSteR.demo.logic.user.User;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
