@@ -7,7 +7,7 @@ import { MAP_ROUTE } from '../../utils/paths.js';
 
 const Home = () => {
 	return (
-		<main>
+		<main style={{ marginTop: 0 }}>
 			<Container className="heading">
 				<h1 className="heading__title">Разом для кращого завтра</h1>
 				<h3 className="heading__sub-title blue">
