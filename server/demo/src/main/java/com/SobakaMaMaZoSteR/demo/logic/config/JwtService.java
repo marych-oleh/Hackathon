@@ -27,8 +27,17 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Adds a new parameter ROLE
+     * @param userDetails -
+     * @return - returns token
+     */
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("roles", userDetails.getAuthorities().stream().findFirst()
+                .orElseThrow(() -> new RuntimeException("Oleh, just leave me at peace🙂"))
+        );
+        return generateToken(extraClaims, userDetails);
     }
 
     public String generateToken(

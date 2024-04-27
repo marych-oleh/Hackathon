@@ -26,12 +26,13 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeRequests()
 
-                    .requestMatchers("/home/**").permitAll()
+                    .requestMatchers("/**").permitAll()
+                   /* .requestMatchers("/home/**").permitAll()
                     .requestMatchers("/api/v1/auth/**").permitAll()
                     //.requestMatchers("/userRouter/**").permitAll()
                     .requestMatchers("/volunteerUser/**").hasAnyAuthority("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
                     .requestMatchers("/civilUser/**").hasAnyAuthority("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")
-
+*/
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
