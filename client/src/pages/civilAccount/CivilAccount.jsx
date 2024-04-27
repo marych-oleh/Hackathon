@@ -11,7 +11,7 @@ import CivilUserRequests from '../../components/civilUserRequests/CivilUserReque
 
 function CivilAccount() {
 	const { userStore } = useContext(Context);
-	const [userInfo, setUserInfo] = useState();
+	const [userInfo, setUserInfo] = useState(undefined);
 	const [requests, setRequests] = useState([]);
 	const [getUserInfo, isUserInfoLoading, userInfoError] = useFetching(() => {
 		setUserInfo(UserInfo);
@@ -29,9 +29,10 @@ function CivilAccount() {
 		<div>
 			<Container>
 				<div className="civil-user__profile">
-					{isUserInfoLoading ?
+					{!userInfo || isUserInfoLoading ?
 						<Loader className="civil-user__loader" />
 					:	<div>
+							{console.log(userInfo)}
 							<UserProfile
 								userName={userInfo.userName}
 								email={userInfo.email}

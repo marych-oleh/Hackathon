@@ -10,9 +10,7 @@ const App = observer(() => {
 	return (
 		<div className="wrapper">
 			<Header />
-			<main>
-				<AppRouter />
-			</main>
+			<AppRouter />
 			<Footer />
 		</div>
 	);
