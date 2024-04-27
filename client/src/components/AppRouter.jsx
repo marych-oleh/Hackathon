@@ -11,9 +11,16 @@ const AppRouter = observer(() => {
 	return (
 		<Routes>
 			{userStore.isAuth &&
-				authRoutes.map(({ path, Component }) => (
+				userStore.userData.role === 'civil' &&
+				authRoutes.civilRoutes.map(({ path, Component }) => (
 					<Route key={path} path={path} element={<Component />} />
 				))}
+			{userStore.isAuth &&
+				userStore.userData.role === 'volunteer' &&
+				authRoutes.volunteerRoutes.map(({ path, Component }) => (
+					<Route key={path} path={path} element={<Component />} />
+				))}
+				
 			{publicRoutes.map(({ path, Component }) => (
 				<Route key={path} path={path} element={<Component />} />
 			))}

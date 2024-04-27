@@ -1,4 +1,5 @@
 export const HOME_ROUTE = '/'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
-export const ACCOUNT_ROUTE = '/account'
+export const CIVIL_ACCOUNT_ROUTE = '/civil/account'
+export const VOLUNTEER_ACCOUNT_ROUTE = '/volunteer/account'

@@ -1,22 +1,26 @@
+import { CivilAccount, VolunteerAccount, Home, Login, Registration } from '../pages/pages.js';
 import {
-	Account,
-	Home,
-	Login,
-	Registration,
-} from '../pages/pages.js';
-import {
-	ACCOUNT_ROUTE,
+	CIVIL_ACCOUNT_ROUTE,
+	VOLUNTEER_ACCOUNT_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
-	REGISTRATION_ROUTE
+	REGISTRATION_ROUTE,
 } from './paths.js';
 
-export const authRoutes = [
-	{
-		path: ACCOUNT_ROUTE,
-		Component: Account,
-	},
-];
+export const authRoutes = {
+	civilRoutes: [
+		{
+			path: CIVIL_ACCOUNT_ROUTE,
+			Component: CivilAccount,
+		},
+	],
+	volunteerRoutes: [
+		{
+			path: VOLUNTEER_ACCOUNT_ROUTE,
+			Component: VolunteerAccount,
+		},
+	],
+};
 
 export const publicRoutes = [
 	{
