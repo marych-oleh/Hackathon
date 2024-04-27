@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useMemo, useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Context } from '../../index.js';
 import { bodyLockToggle, bodyUnlock } from '../../utils/functions.js';
@@ -36,12 +36,18 @@ const Header = observer(() => {
 		setIsMenuActive(false);
 		document.documentElement.classList.remove('menu-open');
 	}
+	const userAccount = useMemo(() => {
+		switch (userStore.userData.role) {
+			case "civil": return CIVIL_ACCOUNT_ROUTE;
+			case "volunteer": return VOLUNTEER_ACCOUNT_ROUTE;
+		}
+	}, [userStore.userData.role]);
 
 	let accountButton;
 	if (userStore.isAuth) {
 		accountButton = (
 			<NavLink
-				to={userStore.userData.role === 'civil' ? CIVIL_ACCOUNT_ROUTE : VOLUNTEER_ACCOUNT_ROUTE}
+				to={userAccount}
 				className="actions-header__icon _icon-account"
 			></NavLink>
 		);

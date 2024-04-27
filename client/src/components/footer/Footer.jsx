@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useMemo, useContext } from 'react';
 import Container from '../container/Container.jsx';
 import './Footer.scss';
 import { Context } from '../../index.js';
@@ -12,6 +12,15 @@ import Logo from '../UI/logo/Logo.jsx';
 
 const Footer = () => {
 	const { userStore } = useContext(Context);
+
+	const userAccount = useMemo(() => {
+		switch (userStore.userData.role) {
+			case 'civil':
+				return CIVIL_ACCOUNT_ROUTE;
+			case 'volunteer':
+				return VOLUNTEER_ACCOUNT_ROUTE;
+		}
+	}, [userStore.userData.role]);
 	return (
 		<footer className="footer">
 			<Container className="footer__container">
@@ -19,14 +28,8 @@ const Footer = () => {
 					<Link to={HOME_ROUTE} className="footer__logo">
 						<Logo />
 					</Link>
-
-					{userStore.isAuth && userStore.userData.role === 'civil' && (
-						<Link to={CIVIL_ACCOUNT_ROUTE} className="footer__link">
-							Account
-						</Link>
-					)}
-					{userStore.isAuth && userStore.userData.role === 'volunteer' && (
-						<Link to={VOLUNTEER_ACCOUNT_ROUTE} className="footer__link">
+					{userStore.isAuth && (
+						<Link to={userAccount} className="footer__link">
 							Account
 						</Link>
 					)}
