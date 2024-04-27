@@ -18,15 +18,12 @@ const Home = () => {
 					Подолай будь-які перешкоди з нашою підтримкою
 				</h3>
 			</Container>
-			<PlaceFindInput onPlaceSelected={(place) => {
-				console.log(place)
-			}} />
 			<Container>
 				<h3 className="map-title">Карта потреб</h3>
 				<Link to={MAP_ROUTE} className="map-link">
 					<span>Повна карта</span>
 				</Link>
-				{/* <HelpMap className="help-map" /> */}
+				<HelpMap className="help-map" />
 			</Container>
 		</main>
 	);

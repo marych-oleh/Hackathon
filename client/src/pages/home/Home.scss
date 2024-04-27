@@ -35,6 +35,9 @@
 	// .heading__sub-title
 	&__sub-title {
 		@include adaptiveValue('font-size', 48, 24);
+		@media (max-width: $mobileSmall) {
+			text-align: center;
+		}
 
 		&.orange {
 			color: $orangeColor;
