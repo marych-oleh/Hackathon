@@ -1,0 +1,26 @@
+@import '../../../utils/common.scss';
+
+.map-marker {
+	background-color: $blueColor;
+	border-radius: em(8);
+	color: #ffffff;
+	font-size: toRem(14);
+	padding: em(5) em(15);
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translate(-50%, 0);
+		width: 0;
+		height: 0;
+		border-left: em(8) solid transparent;
+		border-right: em(8) solid transparent;
+		border-top: em(8) solid $blueColor;
+	}
+	// .map-marker__content
+	&__content {
+	}
+}

@@ -1,0 +1,17 @@
+@import '../../../utils/common.scss';
+
+.info-window {
+	font-size: toRem(15);
+	// .info-window__text
+	&__text {
+		font-weight: 500;
+	}
+
+	// .info-window__link
+	&__link {
+		display: inline-block;
+		font-weight: 600;
+		color: $blueColor;
+		@extend %linkHover;
+	}
+}

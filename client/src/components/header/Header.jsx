@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React, {useMemo, useContext, useEffect, useState } from 'react';
+import React, { useMemo, useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Context } from '../../index.js';
 import { bodyLockToggle, bodyUnlock } from '../../utils/functions.js';
@@ -9,11 +9,11 @@ import {
 	HOME_ROUTE,
 	LOGIN_ROUTE,
 	REGISTRATION_ROUTE,
+	MAP_ROUTE,
 } from '../../utils/paths.js';
 import Container from '../container/Container.jsx';
 import './Header.scss';
 import Logo from '../UI/logo/Logo.jsx';
-import Button from '../UI/button/Button.jsx';
 
 const Header = observer(() => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
@@ -24,6 +24,8 @@ const Header = observer(() => {
 	useEffect(() => {
 		menuClose();
 	}, [location]);
+
+	const isMapPage = location.pathname === MAP_ROUTE;
 
 	function toggleMenu() {
 		setIsMenuActive(!isMenuActive);
@@ -38,8 +40,10 @@ const Header = observer(() => {
 	}
 	const userAccount = useMemo(() => {
 		switch (userStore.userData.role) {
-			case "civil": return CIVIL_ACCOUNT_ROUTE;
-			case "volunteer": return VOLUNTEER_ACCOUNT_ROUTE;
+			case 'civil':
+				return CIVIL_ACCOUNT_ROUTE;
+			case 'volunteer':
+				return VOLUNTEER_ACCOUNT_ROUTE;
 		}
 	}, [userStore.userData.role]);
 
@@ -70,7 +74,7 @@ const Header = observer(() => {
 	return (
 		<header
 			data-lp // to correct right padding on body lock by bodyUnlock and bodyLock functions
-			className="header"
+			className={'header' + (isMapPage ? ' map-page' : '')}
 		>
 			<Container className="header__container">
 				<div className="header__menu menu">
@@ -102,7 +106,7 @@ const Header = observer(() => {
 						</li>
 						<li className="actions-header__item">
 							<Link
-								to={HOME_ROUTE + '#map'}
+								to={MAP_ROUTE}
 								className="actions-header__icon map-btn"
 							>
 								<span>Карта</span>

@@ -1,0 +1,10 @@
+@import '../../utils/common.scss';
+
+.map {
+	width: 100vw;
+	height: 100vh;
+
+	iframe + div {
+		display: none;
+	}
+}
