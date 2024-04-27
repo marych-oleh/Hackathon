@@ -1,5 +1,8 @@
 @import "../../../utils/common.scss";
 
 .logo {
-	font-weight: 700;
+	color: #fff;
+	background-color: #000;
+	padding: em(8) em(10);
+	border-radius: em(10);
 }

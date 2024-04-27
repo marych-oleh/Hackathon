@@ -1,0 +1,39 @@
+@import '../../../utils/common.scss';
+
+.btn {
+	font-weight: 600;
+	line-height: 150%;
+	color: #000;
+	background-color: transparent;
+	display: flex;
+	justify-content:center;align-items: center;
+	padding: em(12) em(36);
+	border: 1px solid #000;
+	border-radius: em(15);
+	transition: all 0.3s;
+
+	@media (any-hover: hover) {
+		&:hover {
+			color: #fff;
+			background-color: $orangeColor;
+			border-color: $orangeColor;
+		}
+	}
+
+	&.small {
+		padding: em(6) em(25);
+		border-radius: em(50);
+	}
+
+	&.fill {
+		color: #fff;
+		border-color: $orangeColor;
+		background-color: $orangeColor;
+		@media (any-hover: hover) {
+			&:hover {
+				color: $orangeColor;
+				background-color: #fff;
+			}
+		}
+	}
+}
