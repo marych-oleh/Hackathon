@@ -4,7 +4,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Context } from '../../index.js';
 import { bodyLockToggle, bodyUnlock } from '../../utils/functions.js';
 import {
-	ACCOUNT_ROUTE,
+	CIVIL_ACCOUNT_ROUTE,
+	VOLUNTEER_ACCOUNT_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
 	REGISTRATION_ROUTE,
@@ -40,7 +41,7 @@ const Header = observer(() => {
 	if (userStore.isAuth) {
 		accountButton = (
 			<NavLink
-				to={ACCOUNT_ROUTE}
+				to={userStore.userData.role === 'civil' ? CIVIL_ACCOUNT_ROUTE : VOLUNTEER_ACCOUNT_ROUTE}
 				className="actions-header__icon _icon-account"
 			></NavLink>
 		);

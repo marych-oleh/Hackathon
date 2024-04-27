@@ -4,7 +4,7 @@ import { Link, redirect, useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { UserAPI } from '../../http/userAPI';
 import { Context } from '../../index';
-import { ACCOUNT_ROUTE, LOGIN_ROUTE } from '../../utils/paths';
+import { CIVIL_ACCOUNT_ROUTE, VOLUNTEER_ACCOUNT_ROUTE, LOGIN_ROUTE } from '../../utils/paths';
 import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
 import './Registration.scss';
@@ -35,7 +35,8 @@ const Registration = observer(() => {
 			e.preventDefault();
 			const data = await UserAPI.registration(registrationForm);
 			userStore.setIsAuth(true);
-			navigation(ACCOUNT_ROUTE);
+			userStore.userData.role === 'civil' && navigation(CIVIL_ACCOUNT_ROUTE);
+			userStore.userData.role === 'volunteer' && navigation(VOLUNTEER_ACCOUNT_ROUTE);
 		} catch (error) {
 			console.log(error);
 		}

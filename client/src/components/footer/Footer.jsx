@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Container from '../container/Container.jsx';
 import './Footer.scss';
+import { Context } from '../../index.js';
 import {
 	HOME_ROUTE,
 	CIVIL_ACCOUNT_ROUTE,
