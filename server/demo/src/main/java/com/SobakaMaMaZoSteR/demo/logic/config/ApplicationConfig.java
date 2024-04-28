@@ -40,25 +40,29 @@ public class ApplicationConfig {
      */
     @Bean
     public UserDetailsService userDetailsService() {
-        return userEmail -> {
-            UserRouter userRole = userRouterRepository.findByUserEmail(userEmail)
+        return userId -> {
+            UserRouter userRole = userRouterRepository.findById(userId)
                     .orElseThrow(() -> new UsernameNotFoundException(
-                            "No Such Info in the UserRouter Schema"
+                            "No Such Info in the UserRouter Schema!!!"
                     ));
             if (Role.USER_CIVIL == userRole.getRole()) {
-                return civilUserRepository.findByEmail(userEmail)
+                return civilUserRepository.findById(userId)
                         .orElseThrow(() -> new UsernameNotFoundException(
                                 "User Not Found!"
                         ));
             }
             else if (Role.USER_VOLUNTEER == userRole.getRole()) {
-                return volunteerUserRepository.findByEmail(userEmail)
+                return volunteerUserRepository.findById(userId)
                         .orElseThrow(() -> new UsernameNotFoundException(
                                 "User Not Found!"
                         ));
             }
             else {
-                return null;
+                try {
+                    throw new Exception("Some shit happend ERROR");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         };
     }

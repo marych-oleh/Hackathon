@@ -26,13 +26,13 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeRequests()
 
-                    .requestMatchers("api/v1/home/**").permitAll()
-                    .requestMatchers("/api/v1/auth/**").permitAll()
-
                 // these are made public cause Oleh said so😊 --------
-                .requestMatchers("/api/v1/civil-request/getAllBy").permitAll()
-                .requestMatchers("/api/v1/civil-request/getAllRequests/**").permitAll()
+                .requestMatchers("api/v1/civil-request/getAllBy").permitAll()
+                .requestMatchers("api/v1/civil-request/getAllRequests/**").permitAll()
                 // ---------------------------------------------------
+
+                .requestMatchers("api/v1/home/**").permitAll()
+                .requestMatchers("api/v1/auth/**").permitAll()
 
                     .requestMatchers("api/v1/volunteerUser/**").hasAnyAuthority("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
                     .requestMatchers("api/v1/civilUser/**").hasAnyAuthority("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")

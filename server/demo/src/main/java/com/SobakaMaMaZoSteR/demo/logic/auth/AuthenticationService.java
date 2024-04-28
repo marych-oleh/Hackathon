@@ -88,13 +88,16 @@ public class AuthenticationService {
             userRouterRepository.save(
                     new UserRouter(newUser.getUserId(), newUser.getEmail(), newUser.getUserRole())
             );
+            System.out.println("added a new user to CIVIL");
         }
         if (Role.USER_VOLUNTEER == request.getUserRole()) {
             VolunteerUser newUser = new VolunteerUser(userTemplate);
             volunteerUserRepository.save(newUser);
+
             userRouterRepository.save(
                     new UserRouter(newUser.getUserId(), newUser.getEmail(), newUser.getUserRole())
             );
+            System.out.println("added a new user to VOLUNTEER");
         }
         var jwtToken = jwtService.generateToken(userTemplate);
         return AuthenticationResponse.builder()
@@ -113,9 +116,20 @@ public class AuthenticationService {
      * @return - AuthenticationResponse
      */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        User fuckUser = null;
+        if (civilUserRepository.findByEmail(request.getEmail()).isPresent()) {
+            fuckUser = civilUserRepository.findByEmail(request.getEmail()).get();
+        }
+        else if (volunteerUserRepository.findByEmail(request.getEmail()).isPresent()) {
+            fuckUser = volunteerUserRepository.findByEmail(request.getEmail()).get();
+        }
+        else {
+            throw new UsernameNotFoundException("FUCK MEEEEEE");
+        }
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        fuckUser.getUserId(),
                         request.getPassword()
                 )
         );
@@ -137,11 +151,15 @@ public class AuthenticationService {
             user = volunteerUserRepository.findByEmail(request.getEmail())
                     .orElseThrow();
         }
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+
+        if (user == null) {
+            throw new UsernameNotFoundException("NOT FOUND!!!");
+        }
+        else {
+            var jwtToken = jwtService.generateToken(user);
+            return AuthenticationResponse.builder()
+                    .token(jwtToken)
+                    .build();
+        }
     }
-
-
 }
