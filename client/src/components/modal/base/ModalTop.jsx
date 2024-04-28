@@ -7,7 +7,7 @@ const ModalTop = ({ title, closeModal }) => {
 			<button
 				type="button"
 				onClick={closeModal}
-				className="popup__close _icon-shop"
+				className="popup__close _icon-cross"
 			></button>
 		</div>
 	);

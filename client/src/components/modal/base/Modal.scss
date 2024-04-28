@@ -59,6 +59,13 @@ body:has(.popup_show)::after {
 		flex-direction: column;
 		justify-content:center;align-items: center;
 
+		&.fullscreen {
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: white;
+		}
 		&.aside {
 			justify-content: flex-start;
 			align-items: flex-end;

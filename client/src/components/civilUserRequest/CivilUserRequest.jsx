@@ -26,17 +26,17 @@ function CivilUserRequest({ request }) {
 			return {
 				title: (
 					<div className="request-volunteers__title">
-						{volunteer.userName}
+						{volunteer.volunteerUser.userName}
 					</div>
 				),
 				body: (
 					<div className="request-volunteers__body">
 						<div className='request-volunteers__contacts civil-request__two-in-row'>
 							<div className="request-volunteers__email">
-								{volunteer.email}
+								{volunteer.volunteerUser.email}
 							</div>
 							<div className="request-volunteers__phone-number">
-								{volunteer.phoneNumber}
+								{volunteer.volunteerUser.phoneNumber}
 							</div>
 						</div>
 						<div className="request-volunteers__comment">
