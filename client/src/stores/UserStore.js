@@ -6,12 +6,14 @@ import { jwtDecode } from 'jwt-decode';
 export class UserStore {
 	constructor() {
 		this._isAuth = false;
-		/**@type {import('../types').UserData|null} */
 		this._userData = {};
 		const token = localStorage.getItem(UserAPI.TOKEN_NAME);
 		if (token && verifyJWT(token)) {
 			this._isAuth = true;
-			this._userData = jwtDecode(token);
+			const decodedToken = jwtDecode(token);
+			this._userData = decodedToken;
+			this.setUserId(decodedToken.sub);
+			this.setRole(decodedToken.role);
 		}
 		makeAutoObservable(this);
 	}
@@ -28,11 +30,23 @@ export class UserStore {
 	setUserData(userData) {
 		this._userData = userData;
 	}
+	setUserId(userId) {
+		this._userData.userId = userId;
+	}
+	setRole(role) {
+		this._userData.role = role;
+	}
 
 	get isAuth() {
 		return this._isAuth;
 	}
 	get userData() {
 		return this._userData;
+	}
+	get userId() {
+		return this._userData.userId;
+	}
+	get role() {
+		return this._userData.role;
 	}
 }

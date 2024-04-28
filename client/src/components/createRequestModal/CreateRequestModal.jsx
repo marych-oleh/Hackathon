@@ -7,6 +7,7 @@ import ReactSelect from '../UI/reactSelect/ReactSelect';
 import Textarea from '../UI/textarea/Textarea';
 import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
 import './CreateRequestModal.scss';
+import { CivilRequestsAPI } from '../../http/civilRequestsAPI.js';
 const options = [
 	{ value: 'Оберіть потребу', label: 'Оберіть потребу', isDisabled: true },
 	...tags,
@@ -76,13 +77,29 @@ function CreateRequestModal() {
 			setErrorMessage('');
 
 			const finalObject = {
-				userId: 1,
+				civilUserId: userStore.userData.userId,
 				tags: createRequestData.tags,
 				description: createRequestData.description,
 				location: userLocation,
 			};
 			console.log(finalObject);
 			// push to the server
+			CivilRequestsAPI.addNewCivilRequest(finalObject)
+				.then((value) => {
+					setRequestModal(false);
+					setCreateRequestData({
+						tags: [],
+						description: '',
+					});
+					setReactSelect([]);
+					setUserLocation('');
+				})
+				.catch((error) => {
+					console.error(error);
+					setErrorMessage(
+						'Упс... Щось пішло не так :(    Спробуйте ще раз надіслати'
+					);
+				});
 		} else {
 			setErrorMessage('Дані вказані неправильно.');
 		}

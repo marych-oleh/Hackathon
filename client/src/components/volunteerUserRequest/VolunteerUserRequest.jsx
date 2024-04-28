@@ -1,10 +1,13 @@
-import React, { useMemo } from 'react';
-import './VolunteerUserRequest.scss';
-import PopupList from '../UI/popupList/PopupList';
+import React, { useContext, useMemo } from 'react';
+import { Context } from '../../index';
 import { formatDate } from '../../utils/functions.js';
-import Button from '../UI/button/Button.jsx';
+import PopupList from '../UI/popupList/PopupList';
 import AcceptRequestModal from '../acceptRequestModal/AcceptRequestModal.jsx';
+import './VolunteerUserRequest.scss';
+import { VOLUNTEER } from '../../types.js';
+
 function VolunteerUserRequest({ request, canTake }) {
+	const { userStore } = useContext(Context);
 	const requestStatus = useMemo(() => {
 		switch (request.status) {
 			case 'NOT_TAKEN':
@@ -90,7 +93,9 @@ function VolunteerUserRequest({ request, canTake }) {
 				items={volunteers}
 				initiallyOpened={volunteers.length == 1}
 			/>
-			{canTake && <AcceptRequestModal />}
+			{canTake && userStore.isAuth && userStore.role === VOLUNTEER && (
+				<AcceptRequestModal />
+			)}
 		</div>
 	);
 }
