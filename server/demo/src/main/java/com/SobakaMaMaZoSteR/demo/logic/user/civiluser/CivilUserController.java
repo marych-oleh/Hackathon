@@ -5,6 +5,7 @@ import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserMapper
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("/api/v1/civilUser")
-@PreAuthorize("hasAnyRole('ROLE_USER_CIVIl')")
+@PreAuthorize("hasAnyAuthority(\"USER_CIVIL\")")
 public class CivilUserController {
 
     @Autowired
@@ -38,8 +39,10 @@ public class CivilUserController {
     public ResponseEntity<CivilUser> getCivilUserById(
             @PathVariable String id
     ) {
-        Optional<CivilUser> civilUser = civilUserRepository.findById(id);
-        return ResponseEntity.ok(civilUser.get());
+        CivilUser civilUser = civilUserRepository.findById(id).orElseThrow(
+                () -> new UsernameNotFoundException("NO SUCH USER AAAAAAAAAAAAAAAAAA")
+        );
+        return ResponseEntity.ok(civilUser);
     }
 
     /**
