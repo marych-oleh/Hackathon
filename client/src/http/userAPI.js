@@ -1,5 +1,5 @@
-import { $host, $authHost } from '.';
 import { jwtDecode } from 'jwt-decode';
+import { $host, $authHost } from '.';
 
 export class UserAPI {
 	static TOKEN_NAME = 'helpinua-token';
@@ -18,16 +18,6 @@ export class UserAPI {
 			email,
 			password,
 		});
-		const data = response.data;
-		console.log(response);
-		const token = data.token;
-		localStorage.setItem(UserAPI.TOKEN_NAME, token);
-		return jwtDecode(token);
-	}
-
-	static async check() {
-		const response = await $authHost.get('auth/auth');
-		console.log(response);
 		const data = response.data;
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);

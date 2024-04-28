@@ -52,3 +52,9 @@
 
 export const VOLUNTEER = 'USER_VOLUNTEER';
 export const CIVIL = 'USER_CIVIL';
+
+/**
+ * @typedef {Object|null} UserData
+ * @property {'USER_VOLUNTEER'|'USER_CIVIL'} role
+ * @property {string} userId
+ */

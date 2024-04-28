@@ -10,6 +10,7 @@ import {
 	LOGIN_ROUTE,
 	REGISTRATION_ROUTE,
 	MAP_ROUTE,
+	ACCOUNT_ROUTE,
 } from '../../utils/paths.js';
 import Container from '../container/Container.jsx';
 import './Header.scss';
@@ -38,20 +39,12 @@ const Header = observer(() => {
 		setIsMenuActive(false);
 		document.documentElement.classList.remove('menu-open');
 	}
-	const userAccount = useMemo(() => {
-		switch (userStore.userData.role) {
-			case 'civil':
-				return CIVIL_ACCOUNT_ROUTE;
-			case 'volunteer':
-				return VOLUNTEER_ACCOUNT_ROUTE;
-		}
-	}, [userStore.userData.role]);
 
 	let accountButton;
 	if (userStore.isAuth) {
 		accountButton = (
 			<NavLink
-				to={userAccount}
+				to={ACCOUNT_ROUTE}
 				className="actions-header__icon _icon-account"
 			></NavLink>
 		);

@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import {
 	CivilAccount,
 	VolunteerAccount,
@@ -15,6 +16,7 @@ import {
 	LOGIN_ROUTE,
 	REGISTRATION_ROUTE,
 	MAP_ROUTE,
+	ACCOUNT_ROUTE,
 } from './paths.js';
 
 export const authRoutes = {
