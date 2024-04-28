@@ -12,8 +12,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Mapper class responsible for mapping between CivilRequest, CivilRequestDto, and other related DTOs/entities.
+ */
 @Component
 public class CivilRequestMapper {
+    /**
+     * Maps a CivilRequest entity to a CivilRequestDto.
+     *
+     * @param civilRequest The CivilRequest entity to map.
+     * @return The mapped CivilRequestDto.
+     */
     public CivilRequestDto toCivilRequestDto(CivilRequest civilRequest) {
         CivilRequestDto civilRequestDto = new CivilRequestDto();
 
@@ -28,6 +37,12 @@ public class CivilRequestMapper {
         return civilRequestDto;
     }
 
+    /**
+     * Maps a CivilRequestDto to a CivilRequest entity.
+     *
+     * @param civilRequestDto The CivilRequestDto to map.
+     * @return The mapped CivilRequest entity.
+     */
     public CivilRequest toCivilRequest(CivilRequestDto civilRequestDto) {
         CivilRequest civilRequest = new CivilRequest();
 
@@ -48,6 +63,13 @@ public class CivilRequestMapper {
         return civilRequest;
     }
 
+    /**
+     * Maps a CivilRequest entity with volunteer information to a CivilRequestWithVolunteer object.
+     *
+     * @param civilRequest     The CivilRequest entity.
+     * @param infoVolunteerDtos The list of InfoVolunteerDto objects containing volunteer information.
+     * @return The mapped CivilRequestWithVolunteer object.
+     */
     public CivilRequestWithVolunteer toCivilRequestWithVolunteer(CivilRequest civilRequest, List<InfoVolunteerDto> infoVolunteerDtos){
         CivilRequestWithVolunteer civilRequestWithVolunteer = new CivilRequestWithVolunteer();
 

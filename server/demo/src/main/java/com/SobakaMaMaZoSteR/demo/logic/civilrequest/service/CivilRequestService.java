@@ -22,6 +22,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * Service class responsible for handling business logic related to CivilRequest entities.
+ */
 @Service
 public class CivilRequestService {
 
@@ -39,6 +42,13 @@ public class CivilRequestService {
 
     @Autowired
     private LocationAndNumberMapper locationAndNumberMapper;
+
+    /**
+     * Adds a new CivilRequest.
+     *
+     * @param civilRequest The CivilRequest entity to add.
+     * @return The added CivilRequest if successful, null otherwise.
+     */
     public CivilRequest addRequest(CivilRequest civilRequest) {
 
         List<CivilRequest> civilRequestsList = civilRequestRepository.findAllByCivilUserId(civilRequest.getCivilUserId());
@@ -61,6 +71,13 @@ public class CivilRequestService {
         return civil;
     }
 
+    /**
+     * Checks if any tag from a list of tags is present in another list of tags.
+     *
+     * @param tagsInBd     The list of tags to check against.
+     * @param receivedTags The list of tags to check.
+     * @return True if any tag from receivedTags is present in tagsInBd, false otherwise.
+     */
     private boolean isTagInTags(List<String> tagsInBd, List<String> receivedTags){
 
         for (String tagInBd: tagsInBd){
@@ -72,17 +89,36 @@ public class CivilRequestService {
         return false;
     }
 
+    /**
+     * Finds a CivilRequest by its ID.
+     *
+     * @param civilRequestId The ID of the CivilRequest to find.
+     * @return The found CivilRequest.
+     * @throws UsernameNotFoundException If the CivilRequest is not found.
+     */
     public CivilRequest findById(String civilRequestId) {
         return civilRequestRepository.findByCivilRequestId(civilRequestId);
     }
 
+    /**
+     * Deletes a CivilRequest by its ID.
+     *
+     * @param id The ID of the CivilRequest to delete.
+     * @return The deleted CivilRequest.
+     * @throws UsernameNotFoundException If the CivilRequest is not found.
+     */
     public CivilRequest deleteById(String id) {
         return civilRequestRepository.deleteCivilRequestByCivilRequestId(id).orElseThrow(
                 () -> new UsernameNotFoundException("User no Found")
         );
     }
 
-
+    /**
+     * Retrieves all full CivilRequests in a specific location.
+     *
+     * @param locationName The name of the location.
+     * @return List of CivilRequests in the location.
+     */
     public List<CivilRequest> getAllFullRequests(String locationName) {
         return civilRequestRepository.findAllByLocation_LocationName(locationName);
     }
@@ -138,6 +174,13 @@ public class CivilRequestService {
         return civilRequestWithVolunteers;
     }
 
+    /**
+     * Adds volunteer information to a CivilRequest and updates its status.
+     *
+     * @param civilRequestId The ID of the CivilRequest to add volunteer information to.
+     * @param infoVolunteer  The InfoVolunteer object containing volunteer information.
+     * @return The updated CivilRequest after adding the volunteer information.
+     */
     public CivilRequest addInfoVolunteer(String civilRequestId, InfoVolunteer infoVolunteer){
         CivilRequest civilRequest = civilRequestRepository.findByCivilRequestId(civilRequestId);
         civilRequest.addInfoVolunteer(infoVolunteer);
@@ -149,12 +192,25 @@ public class CivilRequestService {
         return civilRequestRepository.save(civilRequest);
     }
 
+    /**
+     * Retrieves all CivilRequests filtered by the provided tags and groups them by location.
+     *
+     * @param tags The list of tags to filter CivilRequests.
+     * @return List of LocationAndNumberDto objects representing the grouped CivilRequests.
+     */
     public List<LocationAndNumberDto> getAll(List<String> tags) {
 
         List<CivilRequest> list = civilRequestRepository.findAllByTagsIn(tags);
 
         return groupCivilRequests(list);
     }
+
+    /**
+     * Groups a list of CivilRequests by their locations and returns a list of LocationAndNumberDto objects.
+     *
+     * @param list The list of CivilRequests to group.
+     * @return List of LocationAndNumberDto objects representing the grouped CivilRequests.
+     */
     private List<LocationAndNumberDto> groupCivilRequests(List<CivilRequest> list) {
 
         Map<Location, Integer> group = new HashMap<>();
@@ -172,6 +228,12 @@ public class CivilRequestService {
         return formCivilRequests(group);
     }
 
+    /**
+     * Forms LocationAndNumberDto objects from a map of locations and counts and returns a list of them.
+     *
+     * @param group The map containing locations and counts of CivilRequests.
+     * @return List of LocationAndNumberDto objects representing the grouped CivilRequests.
+     */
     private List<LocationAndNumberDto> formCivilRequests(Map<Location, Integer> group) {
         List<LocationAndNumberDto> list = new LinkedList<>();
 
@@ -184,6 +246,13 @@ public class CivilRequestService {
         return list;
     }
 
+    /**
+     * Checks if a location is present in a map of locations.
+     *
+     * @param group The map containing locations and counts of CivilRequests.
+     * @param loc   The name of the location to check.
+     * @return True if the location is present in the map, false otherwise.
+     */
     private boolean isInMap(Map<Location, Integer> group, String loc) {
         Set<Location> keys = group.keySet();
         Set<String> keysLocationMame = new HashSet<>();
