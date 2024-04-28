@@ -1,7 +1,5 @@
 package com.SobakaMaMaZoSteR.demo.logic.user;
 
-
-import com.fasterxml.jackson.databind.annotation.EnumNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

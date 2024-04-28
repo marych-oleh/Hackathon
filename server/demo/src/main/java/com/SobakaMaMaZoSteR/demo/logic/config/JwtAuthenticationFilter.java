@@ -1,6 +1,5 @@
 package com.SobakaMaMaZoSteR.demo.logic.config;
 
-import com.SobakaMaMaZoSteR.demo.logic.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +16,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * For filtering requests coming front the Front-end side
+ */
 @Component
 @RequiredArgsConstructor // any final fields
 public class JwtAuthenticationFilter extends OncePerRequestFilter {

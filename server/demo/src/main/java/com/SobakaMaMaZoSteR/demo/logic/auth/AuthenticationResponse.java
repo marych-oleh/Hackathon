@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Gets returned to the client-side after the Authentication
+ */
 @Data
 @Builder
 @AllArgsConstructor

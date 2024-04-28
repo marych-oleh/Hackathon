@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * A testing controller that's used to test connection
+ * (made public in SecurityConfiguration)
+ */
 @RestController
 @RequestMapping("/home")
 public class HomeController {

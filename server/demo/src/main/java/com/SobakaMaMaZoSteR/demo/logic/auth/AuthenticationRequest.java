@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Gets retrieved from Front-end
+ */
 @Data
 @Builder
 @AllArgsConstructor
