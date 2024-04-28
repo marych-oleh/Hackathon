@@ -5,11 +5,10 @@ import Textarea from '../UI/textarea/Textarea';
 import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
 import PlaceFindInput from '../UI/placeFindInput/PlaceFindInput.jsx';
 import ReactSelect from '../UI/reactSelect/ReactSelect';
+import { tags } from '../../utils/testData.js';
 const options = [
 	{ value: 'Оберіть потребу', label: 'Оберіть потребу', isDisabled: true },
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' },
+	...tags,
 ];
 
 function CreateRequestModal() {

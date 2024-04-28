@@ -5,7 +5,7 @@ import { useFetching } from '../../hooks/useFetching';
 import { CivilRequestResponse, UserInfo } from '../../utils/testData';
 import { Context } from '../../index';
 import Loader from '../../components/UI/loader/Loader';
-import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests.jsx';
+import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests';
 
 function VolunteerAccount() {
 	const { userStore } = useContext(Context);
@@ -45,7 +45,7 @@ function VolunteerAccount() {
 							<div className="civil-user__no-requests">
 								Ви ще не створювали запитів
 							</div>
-						:	<VolunteerAccount requests={requests} />)}
+						:	<VolunteerUserRequests requests={requests} />)}
 				</div>
 			</Container>
 		</main>

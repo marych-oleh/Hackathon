@@ -4,7 +4,7 @@ export class UserStore {
 	constructor() {
 		this._isAuth = true;
 		this._userData = {
-			role: 'volunteer',
+			role: 'civil',
 		}; //{ role: 'Admin' };
 		makeAutoObservable(this);
 	}

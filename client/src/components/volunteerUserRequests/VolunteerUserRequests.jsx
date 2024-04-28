@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import './VolunteerUserRequests.scss';
 import VolunteerUserRequest from '../volunteerUserRequest/VolunteerUserRequest';
-function VolunteerUserRequests(props) {
-	const requests = props.requests;
+
+function VolunteerUserRequests({ requests, canTake=false }) {
 	const requestsLine1 = useMemo(() => {
 		return requests.slice(0, Math.ceil(requests.length / 2));
 	}, [requests]);
@@ -14,12 +14,12 @@ function VolunteerUserRequests(props) {
 		<div className="civil-requests">
 			<div className="civil-requests__line">
 				{requestsLine1.map((request, idx) => {
-					return <VolunteerUserRequest key={idx} request={request} />;
+					return <VolunteerUserRequest canTake={canTake} key={idx} request={request} />;
 				})}
 			</div>
 			<div className="civil-requests__line">
 				{requestsLine2.map((request, idx) => {
-					return <VolunteerUserRequests key={idx} request={request} />;
+					return <VolunteerUserRequest canTake={canTake} key={idx} request={request} />;
 				})}
 			</div>
 		</div>

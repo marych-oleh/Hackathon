@@ -1,8 +1,7 @@
 @import '../../utils/common.scss';
 
-.civil-request {
+.volunteer-request {
 	border: 1px solid $greyBorderColor;
-	border-top: none;
 	overflow: hidden;
 	border-radius: 15px ;
 	&__header {
@@ -50,6 +49,15 @@
 	}
 
 	&__location {
+	}
+	&__body {
+		background-color: #FBFCD8;
+		padding: em(15);
+	}
+	&__name {
+		font-size: em(18);
+		font-weight: 500;
+		margin-bottom: em(10);
 	}
 }
 
