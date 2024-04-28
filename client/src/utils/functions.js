@@ -1,3 +1,5 @@
+import { jwtDecode } from 'jwt-decode';
+
 let bodyLockStatus = true;
 export let bodyLockToggle = (delay = 500) => {
 	if (document.documentElement.classList.contains('lock')) {
@@ -92,7 +94,6 @@ export function getStringPrice(startPrice, currency = '$') {
 	return currency + ' ' + res;
 }
 
-
 export function formatDate(date) {
 	const day = String(date.getDate()).padStart(2, '0');
 	const month = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
@@ -102,4 +103,19 @@ export function formatDate(date) {
 	const seconds = String(date.getSeconds()).padStart(2, '0');
 
 	return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+}
+
+export function verifyJWT(token) {
+	const decodedToken = jwtDecode(token);
+	if (!decodedToken) {
+		return false;
+	} else {
+		// Check expiration time
+		const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
+		if (decodedToken.exp < currentTime) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

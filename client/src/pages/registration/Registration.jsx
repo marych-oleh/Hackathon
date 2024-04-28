@@ -8,6 +8,7 @@ import {
 	CIVIL_ACCOUNT_ROUTE,
 	VOLUNTEER_ACCOUNT_ROUTE,
 	LOGIN_ROUTE,
+	ACCOUNT_ROUTE,
 } from '../../utils/paths';
 import Button from '../../components/UI/button/Button';
 import Input from '../../components/UI/input/Input';
@@ -37,9 +38,9 @@ const Registration = observer(() => {
 			e.preventDefault();
 			const data = await UserAPI.registration(registrationForm);
 			userStore.setIsAuth(true);
-			userStore.userData.role === CIVIL && navigation(CIVIL_ACCOUNT_ROUTE);
-			userStore.userData.role === VOLUNTEER &&
-				navigation(VOLUNTEER_ACCOUNT_ROUTE);
+			console.log(data);
+			userStore.setUserData(data);
+			navigation(ACCOUNT_ROUTE);
 		} catch (error) {
 			console.log(error);
 		}
