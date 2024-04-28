@@ -1,0 +1,23 @@
+@import '../../utils/common.scss';
+
+.create-request {
+	&__request-button {
+		margin-top: em(20);
+		@media (max-width: $mobileSmall) {
+			width: 100%;
+		}
+		@media (min-width: $mobile) {
+			margin-top: em(40);
+			font-size: em(20);
+		}
+	}
+	&__form {
+		padding: em(15);
+		display: flex;
+		flex-direction: column;
+		gap: em(15);
+	}
+	&__label {
+		font-weight: 500;
+	}
+}

@@ -67,10 +67,12 @@ export const CivilRequestResponse = [
 		dateOfCreation: new Date('2024-04-27T12:00:00Z'),
 		infoVolunteers: [
 			{
-				volunteerUserId: 1,
-				userName: 'poroshenko hui fond',
-				email: 'hui@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 1,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-29T12:00:00Z'),
@@ -94,19 +96,23 @@ export const CivilRequestResponse = [
 		dateOfCreation: new Date('2024-04-27T12:00:00Z'),
 		infoVolunteers: [
 			{
-				volunteerUserId: 1,
-				userName: 'poroshenko hui fond',
-				email: 'hui@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 1,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-29T12:00:00Z'),
 			},
 			{
-				volunteerUserId: 2,
-				userName: 'chervoniy hrest fond',
-				email: 'hrest@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 2,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-30T12:00:00Z'),
@@ -130,28 +136,34 @@ export const CivilRequestResponse = [
 		dateOfCreation: new Date('2024-04-27T12:00:00Z'),
 		infoVolunteers: [
 			{
-				volunteerUserId: 1,
-				userName: 'poroshenko hui fond',
-				email: 'hui@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 1,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-29T12:00:00Z'),
 			},
 			{
-				volunteerUserId: 2,
-				userName: 'chervoniy hrest fond',
-				email: 'hrest@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 2,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-30T12:00:00Z'),
 			},
 			{
-				volunteerUserId: 3,
-				userName: 'Sergiy Prytyla fond',
-				email: 'prytyla@gmail.com',
-				phoneNumber: '+380965619259',
+				volunteerUser: {
+					volunteerUserId: 3,
+					phoneNumber: '+380965619259',
+					email: 'hui@gmail.com',
+					userName: 'poroshenko hui fond',
+				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
 				dateOfAcceptation: new Date('2024-04-29T11:00:00Z'),

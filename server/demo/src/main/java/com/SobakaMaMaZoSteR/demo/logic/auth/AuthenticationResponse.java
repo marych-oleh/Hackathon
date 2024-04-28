@@ -15,4 +15,7 @@ public class AuthenticationResponse {
 
     // added cause Oleh just can't leave me at peace
     private Role role;
+
+    // added cause Denys loves to do it the classic way😛😘
+    private String userId;
 }

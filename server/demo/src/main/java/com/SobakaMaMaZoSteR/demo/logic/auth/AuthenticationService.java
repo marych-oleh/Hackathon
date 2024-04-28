@@ -100,6 +100,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .role(userTemplate.getUserRole())
+                .userId(userTemplate.getUserId())
                 .build();
     }
 
@@ -142,6 +143,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .role(user.getUserRole())
+                .userId(user.getUserId())
                 .build();
     }
 
