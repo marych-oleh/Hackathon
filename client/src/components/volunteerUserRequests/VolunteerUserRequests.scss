@@ -1,0 +1,15 @@
+@import "../../utils/common.scss";
+
+.civil-requests {
+	display: flex;
+	gap: em(15);
+	&__line {
+		flex: 1 1 0;
+		display: flex;
+		gap: em(15);
+		flex-direction: column;
+	}
+	@media(max-width: $mobile) {
+		flex-direction: column;
+	}
+}

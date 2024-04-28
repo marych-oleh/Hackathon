@@ -1,0 +1,95 @@
+@import '../../utils/common.scss';
+
+.volunteer-request {
+	border: 1px solid $greyBorderColor;
+	overflow: hidden;
+	border-radius: 15px ;
+	&__header {
+		height: em(10);
+		border-radius: 15px 15px 0 0;
+		&.orange {
+			background-color: $orangeColor;
+		}
+		&.green {
+			background-color: $greenColor;
+		}
+	}
+
+	&__content {
+		padding: em(15);
+		border-top: none;
+	}
+
+	&__content-header {
+		font-size: em(18);
+		font-weight: 500;
+	}
+
+	&__tags {
+	}
+
+	&__status {
+	}
+
+	&__description {
+		margin-top: em(15);
+		margin-bottom: em(15);
+	}
+
+	&__two-in-row {
+		align-items: flex-end;
+		column-gap: em(15);
+		row-gap: em(10);
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	&__date {
+	}
+
+	&__location {
+	}
+	&__body {
+		background-color: #FBFCD8;
+		padding: em(15);
+	}
+	&__name {
+		font-size: em(18);
+		font-weight: 500;
+		margin-bottom: em(10);
+	}
+}
+
+.request-volunteers {
+	&__body {
+		padding: em(15);
+	}
+	&__title {
+		padding: em(15);
+		padding-left: 0;
+	}
+	&__list-element {
+		border-top: 1px solid $greyBorderColor;
+	}
+
+	&__email {
+	}
+
+	&__contacts {
+	}
+
+
+	&__phone-number {
+	}
+
+
+	&__comment {
+		margin-top: em(15);
+		margin-bottom: em(15);
+	}
+
+
+	&__date {
+	}
+}

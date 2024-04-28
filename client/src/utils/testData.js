@@ -34,7 +34,12 @@ export const points = locations;
 
 export const CivilRequestResponse = [
 	{
-		civilUserId: 1,
+		civilUser: {
+			id: 1,
+			userName: "James bond",
+			email: "bober@gmail.com",
+			phoneNumber: "+380965619259"
+		},
 		civilRequestId: 1,
 		tags: ['Вода', 'Їжа'],
 		status: 'NOT_TAKEN',
@@ -51,7 +56,12 @@ export const CivilRequestResponse = [
 		infoVolunteers: [],
 	},
 	{
-		civilUserId: 1,
+		civilUser: {
+			id: 1,
+			userName: "James bond",
+			email: "bober@gmail.com",
+			phoneNumber: "+380965619259"
+		},
 		civilRequestId: 2,
 		tags: ['Одяг', 'Телевізор', 'Крісло'],
 		status: 'TAKEN',
@@ -70,8 +80,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 1,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -80,7 +90,12 @@ export const CivilRequestResponse = [
 		],
 	},
 	{
-		civilUserId: 1,
+		civilUser: {
+			id: 1,
+			userName: "James bond",
+			email: "bober@gmail.com",
+			phoneNumber: "+380965619259"
+		},
 		civilRequestId: 3,
 		tags: ['Плитка'],
 		status: 'TAKEN',
@@ -99,8 +114,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 1,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -110,8 +125,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 2,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -120,7 +135,12 @@ export const CivilRequestResponse = [
 		],
 	},
 	{
-		civilUserId: 1,
+		civilUser: {
+			id: 1,
+			userName: "James bond",
+			email: "bober@gmail.com",
+			phoneNumber: "+380965619259"
+		},
 		civilRequestId: 4,
 		tags: ['Сантехніка'],
 		status: 'TAKEN',
@@ -139,8 +159,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 1,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -150,8 +170,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 2,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -161,8 +181,8 @@ export const CivilRequestResponse = [
 				volunteerUser: {
 					volunteerUserId: 3,
 					phoneNumber: '+380965619259',
-					email: 'hui@gmail.com',
-					userName: 'poroshenko hui fond',
+					email: 'bober@gmail.com',
+					userName: 'poroshenko bober fond',
 				},
 				comment:
 					'Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу Я допоможу',
@@ -178,3 +198,11 @@ export const UserInfo = {
 	email: 'Petrik@gmail.com',
 	phoneNumber: '+380965619259',
 };
+
+export const tags = [
+	{ value: 'Вода', label: 'Вода' },
+	{ value: 'Їжа', label: 'Їжа' },
+	{ value: 'Одяг', label: 'Одяг' },
+	{ value: 'Медикаменти', label: 'Медикаменти' },
+	{ value: 'Інше', label: 'Інше' },
+];

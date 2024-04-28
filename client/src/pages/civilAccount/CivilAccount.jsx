@@ -10,6 +10,7 @@ import Button from '../../components/UI/button/Button';
 import CivilUserRequests from '../../components/civilUserRequests/CivilUserRequests';
 import Modal from '../../components/modal/base/Modal';
 import CreateRequestModal from '../../components/createRequestModal/CreateRequestModal';
+
 function CivilAccount() {
 	const { userStore } = useContext(Context);
 	const [userInfo, setUserInfo] = useState(undefined);
