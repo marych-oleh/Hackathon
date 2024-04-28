@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("civil-request")
+@CrossOrigin(origins = "http://localhost:3000/")
+@RequestMapping("/api/v1/civil-request")
 @RequiredArgsConstructor
 public class CivilRequestController {
 
@@ -75,8 +76,8 @@ public class CivilRequestController {
         return new ResponseEntity<>(civilRequestMapper.toCivilRequestDto(civilRequestService.addInfoVolunteer(civilRequestId, infoVolunteer)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{civilUserId}")
-    public ResponseEntity<CivilRequest> delete(@PathVariable String civilUserId) {
-        return new ResponseEntity<>(civilRequestService.deleteById(civilUserId), HttpStatus.OK);
+    @DeleteMapping("/delete/{civilRequestId}")
+    public ResponseEntity<CivilRequest> delete(@PathVariable String civilRequestId) {
+        return new ResponseEntity<>(civilRequestService.deleteById(civilRequestId), HttpStatus.OK);
     }
 }

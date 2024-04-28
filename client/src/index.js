@@ -1,3 +1,4 @@
+import { APIProvider } from '@vis.gl/react-google-maps';
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,14 +15,16 @@ addTouchClass();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	// <React.StrictMode>
-		<Context.Provider
-			value={{
-				userStore: new UserStore(),
-			}}
-		>
-			<BrowserRouter>
+	<Context.Provider
+		value={{
+			userStore: new UserStore(),
+		}}
+	>
+		<BrowserRouter>
+			<APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
 				<App />
-			</BrowserRouter>
-		</Context.Provider>
+			</APIProvider>
+		</BrowserRouter>
+	</Context.Provider>
 	// </React.StrictMode>
 );

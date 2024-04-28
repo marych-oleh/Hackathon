@@ -1,13 +1,22 @@
 @import '../../utils/common.scss';
 
 .create-request {
-	&__request-button {
+	&__request-buttons {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: toRem(20);
 		margin-top: em(20);
+		@media (min-width: $mobile) {
+			margin-top: em(40);
+		}
+	}
+	&__request-button {
 		@media (max-width: $mobileSmall) {
 			width: 100%;
 		}
 		@media (min-width: $mobile) {
-			margin-top: em(40);
 			font-size: em(20);
 		}
 	}
