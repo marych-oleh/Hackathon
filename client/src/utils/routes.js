@@ -1,22 +1,24 @@
-import { Navigate } from 'react-router-dom';
 import {
 	CivilAccount,
-	VolunteerAccount,
+	CivilRequestsPage,
 	Home,
 	Login,
 	MainMap,
 	Registration,
-	CivilRequestsPage,
+	RegistrationCivil,
+	RegistrationVolunteer,
+	VolunteerAccount,
 } from '../pages/pages.js';
 import {
 	CIVIL_ACCOUNT_ROUTE,
 	CIVIL_REQUESTS_ROUTE,
-	VOLUNTEER_ACCOUNT_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
-	REGISTRATION_ROUTE,
 	MAP_ROUTE,
-	ACCOUNT_ROUTE,
+	REGISTRATION_CIVIL_ROUTE,
+	REGISTRATION_ROUTE,
+	REGISTRATION_VOLUNTEER_ROUTE,
+	VOLUNTEER_ACCOUNT_ROUTE,
 } from './paths.js';
 
 export const authRoutes = {
@@ -54,5 +56,13 @@ export const publicRoutes = [
 	{
 		path: REGISTRATION_ROUTE,
 		Component: Registration,
+	},
+	{
+		path: REGISTRATION_CIVIL_ROUTE,
+		Component: RegistrationCivil,
+	},
+	{
+		path: REGISTRATION_VOLUNTEER_ROUTE,
+		Component: RegistrationVolunteer,
 	},
 ];

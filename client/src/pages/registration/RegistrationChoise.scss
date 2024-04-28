@@ -1,0 +1,69 @@
+@import '../../utils/common.scss';
+
+.registration-choise {
+	display: grid;
+	min-height: 100vh;
+	width: 100%;
+	
+	padding: toRem(60) 0 0 0;
+	@media (min-width: $mobile) {
+		padding: toRem(80) 0 0 0;
+	}
+	@media (min-width: $tablet) {
+		padding: toRem(100) 0 0 0;
+	}
+	@media (min-width: $mobileSmall) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	main:has(&) {
+		margin-top: toRem(0);
+	}
+
+	&__section {
+	}
+
+	// .registration-choise__choise
+	&__choise {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: toRem(60) toRem(15);
+		transition: all 0.3s;
+		text-align: center;
+		gap: toRem(20);
+		@media (min-width: $mobile) {
+			padding: toRem(80) toRem(15);
+		}
+		@media (min-width: $tablet) {
+			padding: toRem(100) toRem(15);
+		}
+		&.civil {
+			background-color: $greenColor;
+		}
+
+		&.volunteer {
+			background-color: $blueColor;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: $orangeColor;
+			}
+		}
+	}
+
+	// .registration-choise__title
+	&__title {
+		@include adaptiveValue('font-size', 56, 28);
+		font-weight: 600;
+	}
+
+	// .registration-choise__description
+	&__description {
+		@include adaptiveValue('font-size', 42, 21);
+		font-weight: 500;
+	}
+}
