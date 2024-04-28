@@ -17,6 +17,7 @@ function VolunteerAccount() {
 		UserAPI.getVolunteerUserData(userStore.userId)
 			.then((userInfo) => {
 				setUserInfo(userInfo);
+				console.log(userInfo);
 			})
 			.catch((error) => {
 				console.log(error);
