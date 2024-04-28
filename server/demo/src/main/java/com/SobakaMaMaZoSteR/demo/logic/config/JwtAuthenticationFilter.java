@@ -1,5 +1,6 @@
 package com.SobakaMaMaZoSteR.demo.logic.config;
 
+import com.SobakaMaMaZoSteR.demo.logic.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
-        final String userEmail;
+        final String userId;
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
@@ -40,11 +41,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // 7 because "Bearer " has 7 symbols
         jwt = authHeader.substring(7);
-        userEmail = jwtService.extractUsername(jwt);
+        userId = jwtService.extractUsername(jwt);
 
         // if user is not authenticated
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+        if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userId);
 
             // if gotten user is valid -> build a token and update a token holder
             if (jwtService.isTokenValid(jwt, userDetails)) {

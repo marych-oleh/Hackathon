@@ -4,6 +4,7 @@ import './Home.scss';
 import HelpMap from '../../components/map/HelpMap.jsx';
 import { Link } from 'react-router-dom';
 import { MAP_ROUTE } from '../../utils/paths.js';
+import PlaceFindInput from '../../components/UI/placeFindInput/PlaceFindInput.jsx';
 
 const Home = () => {
 	return (

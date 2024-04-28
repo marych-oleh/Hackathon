@@ -13,7 +13,7 @@
 /**
  * @typedef {Object} CivilRequest
  * @property {string[]} tags
- * @property {number} civilUserId
+ * @property {string} civilUserId
  * @property {Location} location
  * @property {string} description
  */
@@ -26,14 +26,14 @@
 
 /**
  * @typedef {Object} InfoVolunteerRequest
- * @property {number} volunteerUserId
- * @property {number} civilRequestId
+ * @property {string} volunteerUserId
+ * @property {string} civilRequestId
  * @property {string} comment
  */
 
 /**
  * @typedef {Object} InfoVolunteerResponse
- * @property {number} volunteerUserId
+ * @property {string} volunteerUserId
  * @property {string} comment
  * @property {Date} dateOfAcceptation
  */
@@ -41,8 +41,8 @@
 /**
  * @typedef {Object} CivilRequestResponse
  * @property {string[]} tags
- * @property {number} civilUserId
- * @property {number} civilRequestId
+ * @property {string} civilUserId
+ * @property {string} civilRequestId
  * @property {Location} location
  * @property {"NOT_TAKEN"|"TAKEN"} status
  * @property {Date} dateOfCreation

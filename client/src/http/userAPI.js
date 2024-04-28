@@ -19,6 +19,7 @@ export class UserAPI {
 			password,
 		});
 		const data = response.data;
+		console.log(response);
 		const token = data.token;
 		localStorage.setItem(UserAPI.TOKEN_NAME, token);
 		return jwtDecode(token);

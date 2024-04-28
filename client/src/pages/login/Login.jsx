@@ -27,10 +27,12 @@ const Login = observer(() => {
 
 		try {
 			const data = await UserAPI.login(email, password);
+			userStore.setIsAuth(true);
+			console.log(data);
+			userStore.setUserData(data);
 			userStore.userData.role === CIVIL && navigation(CIVIL_ACCOUNT_ROUTE);
 			userStore.userData.role === VOLUNTEER &&
 				navigation(VOLUNTEER_ACCOUNT_ROUTE);
-			userStore.setIsAuth(true);
 		} catch (error) {
 			console.log(error);
 		}
