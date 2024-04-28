@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react';
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../../index.js';
@@ -5,8 +6,6 @@ import { ACCOUNT_ROUTE, HOME_ROUTE, MAP_ROUTE } from '../../utils/paths.js';
 import Logo from '../UI/logo/Logo.jsx';
 import Container from '../container/Container.jsx';
 import './Footer.scss';
-import Button from '../UI/button/Button.jsx';
-import { observer } from 'mobx-react';
 
 const Footer = observer(() => {
 	const { userStore } = useContext(Context);
@@ -26,19 +25,9 @@ const Footer = observer(() => {
 						<Logo />
 					</Link>
 					{userStore.isAuth && (
-						<>
-							<Link to={ACCOUNT_ROUTE} className="footer__link">
-								Акаунт
-							</Link>
-							<Button
-								onClick={() => {
-									userStore.exitAccount();
-								}}
-								className="footer__link"
-							>
-								Вийти
-							</Button>
-						</>
+						<Link to={ACCOUNT_ROUTE} className="footer__link">
+							Акаунт
+						</Link>
 					)}
 					<a className="footer__link" href="#">
 						Про нас

@@ -14,7 +14,7 @@ const PlaceFindInput = ({ className, onPlaceSelected, ...props }) => {
 		<Autocomplete
 			{...props}
 			className={'placeInput' + (className ?? '')}
-			apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+			// apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
 			onPlaceSelected={onPlaceSelected}
 			options={{
 				componentRestrictions: { country: 'ua' },

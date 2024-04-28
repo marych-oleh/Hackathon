@@ -1,5 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
-import { $host, $authHost } from '.';
+import { $host } from '.';
 
 export class UserAPI {
 	static TOKEN_NAME = 'helpinua-token';

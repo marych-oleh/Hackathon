@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import './CreateRequestModal.scss';
+import { default as React, useContext, useState } from 'react';
+import { Context } from '../../index.js';
+import { tags } from '../../utils/testData.js';
 import Button from '../UI/button/Button';
-import Textarea from '../UI/textarea/Textarea';
-import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
 import PlaceFindInput from '../UI/placeFindInput/PlaceFindInput.jsx';
 import ReactSelect from '../UI/reactSelect/ReactSelect';
-import { tags } from '../../utils/testData.js';
+import Textarea from '../UI/textarea/Textarea';
+import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
+import './CreateRequestModal.scss';
 const options = [
 	{ value: 'Оберіть потребу', label: 'Оберіть потребу', isDisabled: true },
 	...tags,
 ];
 
 function CreateRequestModal() {
+	const { userStore } = useContext(Context);
 	const [createRequestData, setCreateRequestData] = useState({
 		tags: [],
 		description: '',
@@ -88,12 +90,22 @@ function CreateRequestModal() {
 
 	return (
 		<div className="create-requests">
-			<Button
-				onClick={() => setRequestModal(true)}
-				className="create-request__request-button"
-			>
-				Створини новий запит
-			</Button>
+			<div className="create-request__request-buttons">
+				<Button
+					onClick={() => setRequestModal(true)}
+					className="create-request__request-button"
+				>
+					Створити новий запит
+				</Button>
+				<Button
+					onClick={() => {
+						userStore.exitAccount();
+					}}
+					className="create-request__request-button"
+				>
+					Вийти з акаунту
+				</Button>
+			</div>
 			<FullscreenModal
 				active={requestModal}
 				closeModal={() => {

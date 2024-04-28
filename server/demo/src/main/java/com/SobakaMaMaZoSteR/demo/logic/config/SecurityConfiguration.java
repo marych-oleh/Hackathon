@@ -30,8 +30,8 @@ public class SecurityConfiguration {
                     .requestMatchers("/api/v1/auth/**").permitAll()
 
                 // these are made public cause Oleh said so😊 --------
-                .requestMatchers("/civil-request/getAllBy").permitAll()
-                .requestMatchers("/civil-request/getAllRequests/**").permitAll()
+                .requestMatchers("/api/v1/civil-request/getAllBy").permitAll()
+                .requestMatchers("/api/v1/civil-request/getAllRequests/**").permitAll()
                 // ---------------------------------------------------
 
                     //.requestMatchers("/userRouter/**").permitAll()
