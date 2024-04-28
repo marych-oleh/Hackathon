@@ -48,9 +48,12 @@ public class AuthenticationService {
                 && civilUserRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new IllegalAccessException("Such User already exists in\n\t>> CivilSchema!");
         }
-        if (Role.USER_VOLUNTEER == request.getUserRole()
+        else if (Role.USER_VOLUNTEER == request.getUserRole()
                 && volunteerUserRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new IllegalAccessException("Such User already exists in\n\t>> VolunteerSchema!");
+        }
+        else {
+            throw new IllegalAccessException("NOW WE COUGTH AN ERROR");
         }
     }
 

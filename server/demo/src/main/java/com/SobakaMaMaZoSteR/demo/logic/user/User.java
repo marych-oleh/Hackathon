@@ -54,6 +54,10 @@ public class User implements UserDetails {
         return this.password;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     @Override
     public String getUsername() {
         return this.userId;
