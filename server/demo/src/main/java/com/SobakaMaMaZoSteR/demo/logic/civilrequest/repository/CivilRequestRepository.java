@@ -5,11 +5,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CivilRequestRepository extends MongoRepository<CivilRequest, String > {
     CivilRequest findByCivilRequestId(String id);
-    CivilRequest deleteCivilRequestByCivilRequestId(String id);
+    Optional<CivilRequest> deleteCivilRequestByCivilRequestId(String id);
     List<CivilRequest> findAllByTagsIn(List<String> tags);
     List<CivilRequest> findAllByLocation_LocationName(String locationName);
 

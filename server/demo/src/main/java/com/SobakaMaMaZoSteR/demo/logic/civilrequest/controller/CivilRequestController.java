@@ -54,10 +54,21 @@ public class CivilRequestController {
     }
 
 
-    @GetMapping("/getCivilRequests/{civilUserId}")
+    /*@GetMapping("/getCivilRequests/{civilUserId}")
     private ResponseEntity<List<CivilRequestWithVolunteer>> findAllCivilRequestByCivilUser(
             @PathVariable String civilUserId){
-        return new ResponseEntity<>(civilRequestService.findAllCivilRequestByCivilUser(civilUserId), HttpStatus.OK);
+        return new ResponseEntity<>(
+                civilRequestService.findAllCivilRequestByCivilUser(civilUserId),
+                HttpStatus.OK
+        );
+    }*/
+    @GetMapping("/getCivilRequests/{civilUserId}")
+    private ResponseEntity<List<CivilRequest>> findAllCivilRequestByCivilUser(
+            @PathVariable String civilUserId){
+        return new ResponseEntity<>(
+                civilRequestService.findAllRequestsByCivilUserId(civilUserId),
+                HttpStatus.OK
+        );
     }
 
     // Oleh asked to make publicly visible - 2

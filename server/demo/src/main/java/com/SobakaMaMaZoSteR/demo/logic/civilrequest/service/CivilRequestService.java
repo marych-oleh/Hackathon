@@ -17,6 +17,7 @@ import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.VolunteerUser;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.VolunteerUserRepository;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.additional.VolunteerUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -76,7 +77,9 @@ public class CivilRequestService {
     }
 
     public CivilRequest deleteById(String id) {
-        return civilRequestRepository.deleteCivilRequestByCivilRequestId(id);
+        return civilRequestRepository.deleteCivilRequestByCivilRequestId(id).orElseThrow(
+                () -> new UsernameNotFoundException("User no Found")
+        );
     }
 
 
@@ -84,6 +87,24 @@ public class CivilRequestService {
         return civilRequestRepository.findAllByLocation_LocationName(locationName);
     }
 
+    /**
+     *
+     * @param civilUserId -
+     * @return - List of requests
+     */
+    public List<CivilRequest> findAllRequestsByCivilUserId(String civilUserId) {
+        Optional<CivilUser> civilUser = civilUserRepository.findById(civilUserId);
+        if (civilUser.isPresent()) {
+            return civilUser.get().getCreatedCivilRequest();
+        }
+        else {
+            throw new UsernameNotFoundException(
+                    "Such User doesn't exist ->\n\t>> findAllRequestsByCivilUserId"
+            );
+        }
+    }
+
+    // ----
     public List<CivilRequestWithVolunteer> findAllCivilRequestByCivilUser(String civilUserId){
         List<CivilRequest> lisCivilRequests = civilRequestRepository.findAllByCivilUserId(civilUserId);
 
