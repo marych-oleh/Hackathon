@@ -1,4 +1,4 @@
-@import "../../../utils/common.scss";
+@import '../../../utils/common.scss';
 
 body::after {
 	content: '';
@@ -15,7 +15,6 @@ body::after {
 }
 body:has(.fullscreen-popup_show) {
 	overflow: hidden;
-	pointer-events: none;
 }
 body:has(.fullscreen-popup_show)::after {
 	opacity: 1;
@@ -29,9 +28,26 @@ body:has(.fullscreen-popup_show)::after {
 	left: 100%;
 	width: 100%;
 	height: 100%;
-	transition: left .3s ease;
+	transition:
+		left 0.3s ease,
+		top 0.3s ease,
+		opacity 0.3s ease;
 	overflow: auto;
 	z-index: 120;
+	opacity: 0;
+	pointer-events: none;
+	&_show {
+		pointer-events: all;
+		opacity: 1;
+		left: 0%;
+	}
+	@media (min-width: $mobile) {
+		left: 0;
+		top: -100%;
+		&_show {
+			top: 0;
+		}
+	}
 
 	&__wrapper {
 		background-color: white;
@@ -39,9 +55,13 @@ body:has(.fullscreen-popup_show)::after {
 		width: 80%;
 		left: 20%;
 		min-height: 100%;
-	} 
-	&_show {
-		left: 0%;
+		border-radius: em(15) 0 0 em(15);
+		box-shadow: 0 0 5px $greyColor;
+		@media (min-width: $mobile) {
+			width: 60%;
+			border-radius: 0;
+			border-radius: 0 0 em(15) em(15);
+		}
 	}
 	&__content {
 	}

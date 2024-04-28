@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import './CreateRequestModal.scss';
 import Button from '../UI/button/Button';
-import Input from '../UI/input/Input';
 import Textarea from '../UI/textarea/Textarea';
 import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+import PlaceFindInput from '../UI/placeFindInput/PlaceFindInput.jsx';
+import ReactSelect from '../UI/reactSelect/ReactSelect';
 const options = [
 	{ value: 'Оберіть потребу', label: 'Оберіть потребу', isDisabled: true },
 	{ value: 'chocolate', label: 'Chocolate' },
 	{ value: 'strawberry', label: 'Strawberry' },
 	{ value: 'vanilla', label: 'Vanilla' },
 ];
-const animatedComponents = makeAnimated();
+
 function CreateRequestModal() {
 	const [createRequestData, setCreateRequestData] = useState({
 		tags: [],
-		description: 'f',
-		location: '',
+		description: '',
 	});
-	console.log(createRequestData)
 	const [reactSelect, setReactSelect] = useState([]);
+	const [userLocation, setUserLocation] = useState('');
+	const [requestModal, setRequestModal] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+
 	function onSelectChange(e) {
 		setReactSelect(e);
 		setCreateRequestData({
@@ -28,7 +29,64 @@ function CreateRequestModal() {
 			tags: e.map((elem) => elem.value),
 		});
 	}
-	const [requestModal, setRequestModal] = useState(false);
+
+	function onLocationChange(e) {
+		if (!e.name) {
+			setUserLocation({
+				locationName: e.formatted_address,
+				coordinates: {
+					lat: e.geometry.location.lat(),
+					lng: e.geometry.location.lng(),
+				},
+			});
+		}
+	}
+
+	function validateForm(e) {
+		e.preventDefault();
+		const productForm = document.forms.createRequest;
+		const formElements = Array.from(productForm.elements);
+		let anyHasError = false;
+
+		for (let i = formElements.length - 1; i >= 0; i--) {
+			if (formElements[i].classList.contains('error')) {
+				formElements[i].classList.remove('error');
+			}
+			let hasError = false;
+			const createRequestElement = createRequestData[formElements[i].name];
+
+			switch (formElements[i].name) {
+				case 'tags':
+					if (createRequestElement.length == 0) hasError = true;
+					break;
+				case 'description':
+					if (createRequestElement === '') hasError = true;
+					break;
+			}
+
+			if (hasError) {
+				anyHasError = true;
+				break;
+			}
+		}
+		if (userLocation == '') anyHasError = true;
+
+		if (!anyHasError) {
+			setErrorMessage('');
+
+			const finalObject = {
+				userId: 1,
+				tags: createRequestData.tags,
+				description: createRequestData.description,
+				location: userLocation,
+			};
+			console.log(finalObject);
+			// push to the server
+		} else {
+			setErrorMessage('Дані вказані неправильно.');
+		}
+	}
+
 	return (
 		<div className="create-requests">
 			<Button
@@ -46,24 +104,27 @@ function CreateRequestModal() {
 				variant="fullscreen"
 			>
 				<form
+					onSubmit={(e) => validateForm(e)}
 					className="create-request__form"
 					name="createRequest"
 					action="post"
 				>
-					<label className='create-request__label' htmlFor="create-request__react-select">
+					<label
+						className="create-request__label"
+						htmlFor="create-request__react-select"
+					>
 						Оберіть потребу
 					</label>
-					<Select
+					<ReactSelect
+						name="tags"
 						id="create-request__react-select"
-						placeholder=""
 						value={reactSelect}
-						onChange={onSelectChange}
-						closeMenuOnSelect={false}
-						components={animatedComponents}
-						isMulti
+						setValue={onSelectChange}
+						className="create-request__react-select"
 						options={options}
 					/>
 					<Textarea
+						name="description"
 						value={createRequestData.description}
 						onChange={(e) =>
 							setCreateRequestData({
@@ -73,6 +134,21 @@ function CreateRequestModal() {
 						}
 						label="Опишіть ситуацію"
 					/>
+					<label
+						className="create-request__label"
+						htmlFor="create-request__location"
+					>
+						Оберіть вашу локацію
+					</label>
+					<PlaceFindInput
+						name="location"
+						id="create-request__location"
+						onPlaceSelected={(e) => onLocationChange(e)}
+					/>
+					<Button type="submit">Створити новий запит</Button>
+					<div className="create-request__error-message">
+						{errorMessage}
+					</div>
 				</form>
 			</FullscreenModal>
 		</div>

@@ -22,6 +22,8 @@
 		padding: em(12) em(10);
 		font-size: toRem(18);
 		transition: border-color 0.3s;
+		min-height: em(45);
+		height: em(120);
 
 		@media (min-width: $mobileSmall) {
 			font-size: toRem(20);

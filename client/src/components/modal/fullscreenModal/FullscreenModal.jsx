@@ -1,8 +1,15 @@
 import React from 'react';
 import './FullscreenModal.scss';
 import ModalTop from '../base/ModalTop';
+import {bodyLock, bodyUnlock} from "../../../utils/functions.js";
 
 const FullscreenModal = ({ active, closeModal, children, className }) => {
+	if (active) {
+		bodyLock();
+	}
+	if (closeModal) {
+		bodyUnlock();
+	}
 	return (
 		<div
 			onClick={closeModal}
