@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/volunteerUser")
+@RequestMapping("api/v1/volunteerUser")
 public class VolunteerUserController {
     @Autowired
     private VolunteerUserRepository volunteerUserRepository;

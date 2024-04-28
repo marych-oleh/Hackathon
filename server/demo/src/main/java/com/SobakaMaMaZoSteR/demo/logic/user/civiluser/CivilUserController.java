@@ -14,7 +14,7 @@ import java.util.Optional;
  *
  */
 @RestController
-@RequestMapping("/civilUser")
+@RequestMapping("api/v1/civilUser")
 @PreAuthorize("hasAnyRole('ROLE_USER_CIVIl')")
 public class CivilUserController {
 

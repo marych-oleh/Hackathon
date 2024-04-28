@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * (made public in SecurityConfiguration)
  */
 @RestController
-@RequestMapping("/home")
+@RequestMapping("api/v1/home")
 public class HomeController {
 
     @GetMapping("/test_hello")
