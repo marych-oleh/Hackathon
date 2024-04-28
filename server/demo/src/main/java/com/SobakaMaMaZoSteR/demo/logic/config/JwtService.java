@@ -37,7 +37,8 @@ public class JwtService {
         Map<String, Object> extraClaims = new HashMap<>();
 
         // commented, cause Oleh said to pass the ROLE via response and no in the token itself
-        //extraClaims.put("roles", userDetails.getUserRole());
+        // 28.04 - decision was reconsidered
+        extraClaims.put("role", userDetails.getUserRole());
         return generateToken(extraClaims, userDetails);
     }
 

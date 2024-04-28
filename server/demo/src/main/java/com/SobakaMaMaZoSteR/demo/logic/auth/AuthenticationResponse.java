@@ -13,9 +13,10 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
     private String token;
 
+    // Turned out, it's not needed
     // added cause Oleh just can't leave me at peace
-    private Role role;
+    //private Role role;
 
     // added cause Denys loves to do it the classic way😛😘
-    private String userId;
+    //private String userId;
 }
