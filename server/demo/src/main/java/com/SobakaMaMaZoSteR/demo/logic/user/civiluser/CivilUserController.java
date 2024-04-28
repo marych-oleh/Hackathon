@@ -14,6 +14,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("/api/v1/civilUser")
 @PreAuthorize("hasAnyRole('ROLE_USER_CIVIl')")
 public class CivilUserController {
