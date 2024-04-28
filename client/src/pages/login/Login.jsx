@@ -25,6 +25,8 @@ const Login = observer(() => {
 			userStore.setIsAuth(true);
 			console.log(data);
 			userStore.setUserData(data);
+			userStore.setUserId(data.sub);
+			userStore.setRole(data.role);
 			navigation(ACCOUNT_ROUTE);
 		} catch (error) {
 			console.log(error);

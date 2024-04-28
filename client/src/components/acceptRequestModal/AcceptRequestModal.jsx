@@ -3,14 +3,8 @@ import './AcceptRequestModal.scss';
 import Button from '../UI/button/Button';
 import Textarea from '../UI/textarea/Textarea';
 import FullscreenModal from '../modal/fullscreenModal/FullscreenModal';
-import PlaceFindInput from '../UI/placeFindInput/PlaceFindInput.jsx';
-import ReactSelect from '../UI/reactSelect/ReactSelect';
-const options = [
-	{ value: 'Оберіть потребу', label: 'Оберіть потребу', isDisabled: true },
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' },
-];
+import { CivilRequestsAPI } from '../../http/civilRequestsAPI.js';
+import { VolunteerRequestsAPI } from '../../http/volunteerRequestsAPI.js';
 
 function AcceptRequestModal() {
 	const [acceptRequestData, setAcceptRequestData] = useState({
@@ -31,6 +25,19 @@ function AcceptRequestModal() {
 			};
 			console.log(finalObject);
 			// push to the server
+			VolunteerRequestsAPI.addNewInfoVolunteerRequest(finalObject)
+				.then((value) => {
+					setRequestModal(false);
+					setAcceptRequestData({
+						description: '',
+					});
+				})
+				.catch((error) => {
+					console.error(error);
+					setErrorMessage(
+						'Упс... Щось пішло не так :(    Спробуйте ще раз надіслати'
+					);
+				});
 		} else {
 			setErrorMessage('Дані вказані неправильно.');
 		}

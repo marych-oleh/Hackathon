@@ -1,12 +1,10 @@
-import React, { useMemo, useContext, useEffect, useState } from 'react';
-import UserProfile from '../../components/userProfile/UserProfile';
-import Container from '../../components/container/Container';
-import { useFetching } from '../../hooks/useFetching';
-import { CivilRequestResponse, UserInfo } from '../../utils/testData';
-import { Context } from '../../index';
-import Loader from '../../components/UI/loader/Loader';
-import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from '../../components/UI/loader/Loader';
+import Container from '../../components/container/Container';
+import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests';
+import { useFetching } from '../../hooks/useFetching';
+import { CivilRequestResponse } from '../../utils/testData';
 const CivilRequests = () => {
 	let { locationName } = useParams();
 	const [requests, setRequests] = useState([]);
@@ -28,7 +26,10 @@ const CivilRequests = () => {
 							<div className="civil-user__no-requests">
 								Ви ще не створювали запитів
 							</div>
-						:	<VolunteerUserRequests canTake = {true} requests={requests} />)}
+						:	<VolunteerUserRequests
+								canTake={true}
+								requests={requests}
+							/>)}
 				</div>
 			</Container>
 		</main>

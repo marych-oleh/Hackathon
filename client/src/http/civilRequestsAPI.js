@@ -22,7 +22,7 @@ export class CivilRequestsAPI {
 	 * Get all requests by location
 	 * Used in CivilRequestsPage.jsx
 	 * @param {string} locationName - name of location by which requests are shown
-	 * @returns {import('../types').CivilRequestResponse[]}
+	 * @returns {Promise<import('../types').CivilRequestResponse[]>}
 	 */
 	static async getAllByLocation(locationName) {
 		const response = await $host.get(
@@ -37,7 +37,7 @@ export class CivilRequestsAPI {
 	 * Authorised API.
 	 * Get all civil`s requests
 	 * @param {string} civilUserId - id of civil
-	 * @returns {import('../types').CivilRequestResponse[]}
+	 * @returns {Promise<import('../types').CivilRequestResponse[]>}
 	 */
 	static async getAllUserRequests(civilUserId) {
 		const response = await $authHost.get(

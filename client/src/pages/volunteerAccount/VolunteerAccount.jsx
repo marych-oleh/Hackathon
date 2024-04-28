@@ -6,16 +6,30 @@ import { CivilRequestResponse, UserInfo } from '../../utils/testData';
 import { Context } from '../../index';
 import Loader from '../../components/UI/loader/Loader';
 import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests';
+import { VolunteerRequestsAPI } from '../../http/volunteerRequestsAPI';
+import { UserAPI } from '../../http/userAPI';
 
 function VolunteerAccount() {
 	const { userStore } = useContext(Context);
 	const [userInfo, setUserInfo] = useState(undefined);
 	const [requests, setRequests] = useState([]);
 	const [getUserInfo, isUserInfoLoading, userInfoError] = useFetching(() => {
-		setUserInfo(UserInfo);
+		UserAPI.getVolunteerUserData(userStore.userId)
+			.then((userInfo) => {
+				setUserInfo(userInfo);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, true);
 	const [getRequests, isRequestsLoading, requestsError] = useFetching(() => {
-		setRequests(CivilRequestResponse);
+		VolunteerRequestsAPI.getAllUserRequests(userStore.userData.userId)
+			.then((requests) => {
+				setRequests(requests);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, true);
 
 	useEffect(() => {

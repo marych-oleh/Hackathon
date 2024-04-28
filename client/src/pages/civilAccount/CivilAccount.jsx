@@ -1,25 +1,37 @@
-import React, { useMemo, useContext, useEffect, useState } from 'react';
-import './CivilAccount.scss';
-import { useFetching } from '../../hooks/useFetching';
-import { CivilRequestResponse, UserInfo } from '../../utils/testData';
-import { Context } from '../../index';
-import Container from '../../components/container/Container';
+import React, { useContext, useEffect, useState } from 'react';
 import Loader from '../../components/UI/loader/Loader';
-import UserProfile from '../../components/userProfile/UserProfile';
-import Button from '../../components/UI/button/Button';
 import CivilUserRequests from '../../components/civilUserRequests/CivilUserRequests';
-import Modal from '../../components/modal/base/Modal';
+import Container from '../../components/container/Container';
 import CreateRequestModal from '../../components/createRequestModal/CreateRequestModal';
+import UserProfile from '../../components/userProfile/UserProfile';
+import { useFetching } from '../../hooks/useFetching';
+import { Context } from '../../index';
+import { CivilRequestResponse, UserInfo } from '../../utils/testData';
+import './CivilAccount.scss';
+import { CivilRequestsAPI } from '../../http/civilRequestsAPI';
+import { UserAPI } from '../../http/userAPI';
 
 function CivilAccount() {
 	const { userStore } = useContext(Context);
-	const [userInfo, setUserInfo] = useState(undefined);
+	const [userInfo, setUserInfo] = useState();
 	const [requests, setRequests] = useState([]);
 	const [getUserInfo, isUserInfoLoading, userInfoError] = useFetching(() => {
-		setUserInfo(UserInfo);
+		UserAPI.getCivilUserData(userStore.userId)
+			.then((userInfo) => {
+				setUserInfo(userInfo);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, true);
 	const [getRequests, isRequestsLoading, requestsError] = useFetching(() => {
-		setRequests(CivilRequestResponse);
+		CivilRequestsAPI.getAllUserRequests(userStore.userData.userId)
+			.then((requests) => {
+				setRequests(requests);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, true);
 
 	useEffect(() => {
