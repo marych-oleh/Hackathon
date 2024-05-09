@@ -1,13 +1,14 @@
-import React, { useMemo, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserProfile from '../../components/userProfile/UserProfile';
 import Container from '../../components/container/Container';
 import { useFetching } from '../../hooks/useFetching';
-import { CivilRequestResponse, UserInfo } from '../../utils/testData';
 import { Context } from '../../index';
 import Loader from '../../components/UI/loader/Loader';
 import VolunteerUserRequests from '../../components/volunteerUserRequests/VolunteerUserRequests';
 import { VolunteerRequestsAPI } from '../../http/volunteerRequestsAPI';
 import { UserAPI } from '../../http/userAPI';
+import './VolunteerAccount.scss';
+import Button from '../../components/UI/button/Button';
 
 function VolunteerAccount() {
 	const { userStore } = useContext(Context);
@@ -52,6 +53,16 @@ function VolunteerAccount() {
 							/>
 						</div>
 					}
+				</div>
+				<div className="volunteer__request-buttons">
+					<Button
+						onClick={() => {
+							userStore.exitAccount();
+						}}
+						className="volunteer__request-button"
+					>
+						Вийти з акаунту
+					</Button>
 				</div>
 				<div className="civil-user__requests">
 					{!isUserInfoLoading &&
