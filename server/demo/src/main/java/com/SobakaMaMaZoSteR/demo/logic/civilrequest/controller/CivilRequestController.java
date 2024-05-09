@@ -6,6 +6,7 @@ import com.SobakaMaMaZoSteR.demo.logic.civilrequest.dto.CivilRequestDto;
 import com.SobakaMaMaZoSteR.demo.logic.civilrequest.entity.InfoVolunteer;
 import com.SobakaMaMaZoSteR.demo.logic.civilrequest.mapper.CivilRequestMapper;
 import com.SobakaMaMaZoSteR.demo.logic.civilrequest.service.CivilRequestService;
+import com.SobakaMaMaZoSteR.demo.logic.config.UrlConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
  * Controller class responsible for handling HTTP requests related to civil requests.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
-@RequestMapping("/api/v1/civil-request")
+@CrossOrigin(origins = UrlConfig.ORIGIN_URL)
+@RequestMapping(UrlConfig.MAPPING_PREFIX + "/civil-request")
 @RequiredArgsConstructor
 public class CivilRequestController {
 

@@ -1,5 +1,6 @@
 package com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser;
 
+import com.SobakaMaMaZoSteR.demo.logic.config.UrlConfig;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.additional.VolunteerUserDto;
 import com.SobakaMaMaZoSteR.demo.logic.user.volunteeruser.additional.VolunteerUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
-@RequestMapping("/api/v1/volunteerUser")
+@CrossOrigin(origins = UrlConfig.ORIGIN_URL)
+@RequestMapping(UrlConfig.MAPPING_PREFIX + "/volunteerMapper")
 public class VolunteerUserController {
     @Autowired
     private VolunteerUserRepository volunteerUserRepository;

@@ -34,8 +34,10 @@ public class SecurityConfiguration {
                 .requestMatchers("api/v1/home/**").permitAll()
                 .requestMatchers("api/v1/auth/**").permitAll()
 
-                .requestMatchers("api/v1/civilUser/**").hasAnyAuthority("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")
-                .requestMatchers("api/v1/volunteerUser/**").hasAnyAuthority("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
+                .requestMatchers("api/v1/civilMapper/**")
+                    .hasAnyAuthority("ROLE_USER_CIVIl", "USER_CIVIl", "\"USER_CIVIl\"", "\"ROLE_USER_CIVIl\"")
+                .requestMatchers("api/v1/volunteerMapper/**")
+                    .hasAnyAuthority("ROLE_USER_VOLUNTEER", "USER_VOLUNTEER", "\"USER_VOLUNTEER\"")
 
                 .anyRequest().authenticated()
                 .and()

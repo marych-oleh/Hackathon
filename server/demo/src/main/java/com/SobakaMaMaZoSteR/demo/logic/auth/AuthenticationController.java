@@ -1,6 +1,7 @@
 package com.SobakaMaMaZoSteR.demo.logic.auth;
 
 
+import com.SobakaMaMaZoSteR.demo.logic.config.UrlConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
  * into consideration
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
-@RequestMapping("/api/v1/auth")
+@CrossOrigin(origins = UrlConfig.ORIGIN_URL)
+@RequestMapping(UrlConfig.MAPPING_PREFIX + "/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService service;

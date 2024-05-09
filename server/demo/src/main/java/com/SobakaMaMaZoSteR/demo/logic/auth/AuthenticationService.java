@@ -44,13 +44,15 @@ public class AuthenticationService {
      * @throws IllegalAccessException - when user specified in request doesn't exist
      */
     private void checkIfUserExists(RegisterRequest request) throws IllegalAccessException {
-        if (Role.USER_CIVIL == request.getUserRole()
-                && civilUserRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new IllegalAccessException("Such User already exists in\n\t>> CivilSchema!");
+        if (Role.USER_CIVIL == request.getUserRole() ) {
+            if (civilUserRepository.findByEmail(request.getEmail()).isPresent()) {
+                throw new IllegalAccessException("Such User already exists in\n\t>> CivilSchema!");
+            }
         }
-        else if (Role.USER_VOLUNTEER == request.getUserRole()
-                && volunteerUserRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new IllegalAccessException("Such User already exists in\n\t>> VolunteerSchema!");
+        else if (Role.USER_VOLUNTEER == request.getUserRole()) {
+            if (volunteerUserRepository.findByEmail(request.getEmail()).isPresent()) {
+                throw new IllegalAccessException("Such User already exists in\n\t>> VolunteerSchema!");
+            }
         }
         else {
             throw new IllegalAccessException("NOW WE COUGTH AN ERROR");

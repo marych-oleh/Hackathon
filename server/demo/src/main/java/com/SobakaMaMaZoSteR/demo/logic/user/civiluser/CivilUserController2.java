@@ -1,24 +1,18 @@
 package com.SobakaMaMaZoSteR.demo.logic.user.civiluser;
 
-import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserDto;
-import com.SobakaMaMaZoSteR.demo.logic.user.civiluser.additional.CivilUserMapper;
+import com.SobakaMaMaZoSteR.demo.logic.config.UrlConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-/**
- *
- */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
-@RequestMapping("/api/v1/civilUser")
-@PreAuthorize("hasAnyAuthority(\"USER_CIVIL\")")
-public class CivilUserController {
+@CrossOrigin(origins = UrlConfig.ORIGIN_URL)
+@RequestMapping(UrlConfig.MAPPING_PREFIX + "/civilMapper")
+public class CivilUserController2 {
 
     @Autowired
     private CivilUserRepository civilUserRepository;
